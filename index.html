@@ -8,6 +8,10 @@
       name="description"
       content="ガジェット発信で紹介したiPhone、iPad、充電器、デスク周りアイテムのリンク集。"
     />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="manifest" href="assets/site.webmanifest" />
+    <meta name="theme-color" content="#1368e8" />
     <style>
       :root {
         color-scheme: light;
@@ -1072,8 +1076,7 @@
                   ${item.coupon ? `<p class="coupon-note">${item.coupon}</p>` : ""}
                   ${item.note ? `<p class="coupon-note">${item.note}</p>` : ""}
                   <div class="item-actions">
-                    <a class="buy" href="${item.url}" target="_blank" rel="noopener">リンクを見る</a>
-                    <span class="price">${item.price}</span>
+                    <a class="buy" href="${item.url}" target="_blank" rel="noopener">商品をチェック</a>
                   </div>
                 </div>
               </article>

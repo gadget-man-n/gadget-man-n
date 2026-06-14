@@ -1,0 +1,14 @@
+{
+  "name": "ガジェ⌘ガジェット伝道師",
+  "short_name": "ガジェ",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#1368e8",
+  "background_color": "#edf5ff",
+  "display": "standalone"
+}

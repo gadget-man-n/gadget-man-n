@@ -543,7 +543,7 @@
           <div>
             <h1>ガジェ⌘ガジェット伝道師</h1>
             <p class="lead">
-              SNSで紹介したオススメ商品をチェック✅
+            SNSで紹介したアイテムをチェック✅
             </p>
             <a class="work-link" href="mailto:gadget.man.n358@gmail.com">
               <span>仕事の依頼はこちら</span>
@@ -630,7 +630,7 @@
         {
           name: "Ulanzi MagSafeライト LM23",
           category: "iphone",
-          categories: ["iphone"],
+          categories: ["iphone", "other"],
           icon: "U",
           badge: "6/7紹介",
           badgeType: "hot",
@@ -1057,6 +1057,11 @@
           .map(
             (item) => {
               const thumbnail = getThumbnailSrc(item);
+              const categoryBadges = (item.categories || [item.category])
+                .map((category) => categoryLabels[category] || category)
+                .filter((label, index, labels) => label !== item.badge && labels.indexOf(label) === index)
+                .map((label) => `<span class="badge">${label}</span>`)
+                .join("");
               return `
               <article class="card">
                 <div class="thumb" aria-hidden="true">
@@ -1069,7 +1074,7 @@
                 <div class="item-main">
                   <div class="item-top">
                     <span class="badge ${item.badgeType || ""}">${item.badge}</span>
-                    <span class="badge">${categoryLabels[item.category]}</span>
+                    ${categoryBadges}
                   </div>
                   <h3 class="item-name">${item.name}</h3>
                   <p class="item-desc">${item.desc}</p>

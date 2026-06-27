@@ -556,9 +556,9 @@
             <p class="lead">
             SNSで紹介したアイテムをチェック✅
             </p>
-            <a class="work-link" href="mailto:gadget.man.n358@gmail.com">
+            <a class="work-link" href="mailto:gadget.man.n.sns@gmail.com">
               <span>仕事の依頼はこちら</span>
-              <strong>gadget.man.n358@gmail.com</strong>
+              <strong>gadget.man.n.sns@gmail.com</strong>
             </a>
             <div class="social-links" aria-label="SNSリンク">
               <a class="social-link" href="https://www.youtube.com/@gadget_man_n" target="_blank" rel="noopener" aria-label="YouTube">
@@ -624,7 +624,6 @@
       const categories = [
         { id: "recent", label: "直近紹介" },
         { id: "coupon", label: "クーポン" },
-        { id: "crowdfunding", label: "クラファン" },
         { id: "iphone", label: "iPhone" },
         { id: "ipad", label: "iPad" },
         { id: "applewatch", label: "Apple Watch" },
@@ -641,14 +640,11 @@
         {
           name: "Wanbo プロジェクター ToGo Pro",
           category: "other",
-          categories: ["coupon", "other"],
+          categories: ["other"],
           icon: "W",
           badge: "6/19紹介",
-          badgeType: "coupon",
-          price: "-",
+          price: "¥37,499",
           desc: "持ち運びやすく、寝室や外出先でも映像を楽しみやすい小型プロジェクター。",
-          coupon: "限定クーポンコード：Z7OYHW2I\n有効期限：2026年6月25日(木) 23:59まで",
-          couponActive: true,
           url: "https://amazon.wanbo.cn/TGP_gadgetman",
           thumbnail: "サムネイル/ToGo Pro.jpg",
           recent: true,
@@ -669,14 +665,11 @@
         {
           name: "ORICO エンクロージャー AP80F",
           category: "iphone",
-          categories: ["coupon", "iphone", "desk"],
+          categories: ["iphone", "desk"],
           icon: "O",
           badge: "6/4紹介",
-          badgeType: "coupon",
           price: "¥4,899",
           desc: "M.2 SSDを外付け化して、データ移行やバックアップに使えるケース。",
-          coupon: "クーポンコード：GADGETORICO\nコード入力で20%オフ\n有効期限：2026年6月20日(土) 23:59JST",
-          couponActive: true,
           url: "https://amzn.to/4uByjPH",
           thumbnail: "サムネイル/AP80F.jpg",
           recent: true,
@@ -708,14 +701,11 @@
         {
           name: "SOUNDPEATS イヤカフ型イヤホン UU2",
           category: "earphone",
-          categories: ["coupon", "earphone"],
+          categories: ["earphone"],
           icon: "S",
           badge: "5/20紹介",
-          badgeType: "coupon",
           price: "¥6,188",
           desc: "耳をふさがず周囲の音も聞きやすい、ながら聴き向けイヤホン。",
-          coupon: "クーポンコード：SPUU2YT601\n8% OFF\n利用期限：2026/06/21 23:59",
-          couponActive: true,
           url: "https://amzn.to/42JmMSI",
           thumbnail: "サムネイル/UU2 earcuff earbuds.jpg",
           recent: true,
@@ -730,20 +720,6 @@
           desc: "会議やメモ音声を録音し、AI活用で振り返りやすくするレコーダー。",
           url: "https://jp.umevo.ai/",
           thumbnail: "サムネイル/UMEVO Note Plus.jpg",
-          recent: true,
-        },
-        {
-          name: "UVISION AllPlay Smart Projector",
-          category: "other",
-          categories: ["crowdfunding", "other"],
-          icon: "U",
-          badge: "クラファン",
-          badgeType: "crowdfunding",
-          price: "¥39,800",
-          desc: "ケーブル少なめで映像を楽しめる、持ち運び向けスマートプロジェクター。",
-          note: "クラファン掲載：2026年6月19日まで",
-          url: "https://greenfunding.jp/lab/projects/9323",
-          thumbnail: "サムネイル/AllPlay Smart Projector.jpg",
           recent: true,
         },
         {
@@ -763,7 +739,7 @@
           category: "charger",
           categories: ["coupon", "charger", "desk"],
           icon: "O",
-          badge: "クーポン",
+          badge: "5/1紹介",
           badgeType: "coupon",
           price: "¥2,990",
           desc: "AC電源とUSB充電をまとめられる、デスク向け多機能電源タップ。",
@@ -783,7 +759,7 @@
           desc: "自宅で大画面を楽しみたい人向けの、据え置き寄りプロジェクター。",
           url: "https://amazon.wanbo.cn/v1p_gadget_man_n",
           thumbnail: "サムネイル/Vali 1 Pro.jpg",
-          recent: false,
+          recent: true,
         },
         {
           name: "viaim AIイヤホン RecDot",
@@ -1018,7 +994,6 @@
       const categoryLabels = Object.fromEntries(categories.map((category) => [category.id, category.label]));
       const categoryTitles = {
         coupon: "🉐おトクなクーポン発行中",
-        crowdfunding: "クラウドファンディング実施中",
         iphone: "iPhone関連",
         ipad: "iPad関連",
         applewatch: "Apple Watch関連",

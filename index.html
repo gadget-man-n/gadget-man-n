@@ -109,7 +109,6 @@
       .profile {
         position: relative;
         overflow: hidden;
-        min-height: 230px;
         border-radius: 0 0 28px 28px;
         margin: -20px -16px 0;
         padding: 26px 18px 20px;
@@ -195,15 +194,6 @@
         line-height: 1.35;
       }
 
-      .social-links {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        margin-top: 12px;
-      }
-
       .social-link {
         display: grid;
         width: 42px;
@@ -228,6 +218,219 @@
         width: 20px;
         height: 20px;
         fill: currentColor;
+      }
+
+      .moft-banner {
+        position: relative;
+        overflow: hidden;
+        margin: 18px 0 0;
+        padding: 18px 16px;
+        border: 1px solid rgba(19, 104, 232, 0.18);
+        border-radius: 12px;
+        background: linear-gradient(125deg, #0d1f3d 0%, #14356e 52%, #1368e8 100%);
+        color: #fff;
+        box-shadow: 0 16px 38px rgba(10, 30, 70, 0.28);
+      }
+
+      .moft-banner::after {
+        content: "";
+        position: absolute;
+        top: -70px;
+        right: -60px;
+        width: 190px;
+        height: 190px;
+        border-radius: 50%;
+        background: rgba(245, 184, 46, 0.18);
+        pointer-events: none;
+      }
+
+      .moft-logo {
+        position: absolute;
+        top: 18px;
+        right: 16px;
+        z-index: 1;
+        width: clamp(72px, 20vw, 96px);
+        height: auto;
+        filter: brightness(0) invert(1);
+        opacity: 0.95;
+      }
+
+      .moft-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--yellow);
+        color: #3c2a00;
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.02em;
+      }
+
+      .moft-head {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 12px;
+        align-items: center;
+      }
+
+      .moft-title {
+        margin: 0;
+        font-size: clamp(19px, 5vw, 24px);
+        font-weight: 900;
+        line-height: 1.4;
+      }
+
+      .moft-title em {
+        color: #ffd76a;
+        font-style: normal;
+      }
+
+      .moft-code-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .moft-code {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        min-height: 44px;
+        padding: 0 14px;
+        border: 2px dashed rgba(255, 255, 255, 0.55);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+      }
+
+      .moft-code small {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0;
+        opacity: 0.85;
+      }
+
+      .moft-cta {
+        display: inline-flex;
+        flex: 1 1 auto;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 16px;
+        border-radius: 8px;
+        background: #fff;
+        color: var(--blue-dark);
+        font-size: 13px;
+        font-weight: 900;
+        transition: transform 0.18s ease;
+      }
+
+      .moft-cta:hover {
+        transform: translateY(-1px);
+      }
+
+      .moft-terms {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px 14px;
+        margin: 10px 0 0;
+        padding: 0;
+        color: rgba(255, 255, 255, 0.82);
+        list-style: none;
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 639px) {
+        .profile {
+          padding: 20px 16px 16px;
+        }
+
+        .profile-inner {
+          grid-template-columns: 78px 1fr;
+          gap: 12px;
+        }
+
+        .avatar {
+          width: 78px;
+          border-width: 3px;
+          border-radius: 18px;
+        }
+
+        h1 {
+          margin: 4px 0 4px;
+          font-size: 21px;
+        }
+
+        .lead {
+          font-size: 12px;
+          line-height: 1.6;
+        }
+
+        .work-link {
+          min-height: 42px;
+          margin-top: 10px;
+          padding: 8px 11px;
+        }
+
+        .moft-banner {
+          padding: 14px 14px 12px;
+        }
+
+        .moft-head {
+          padding-right: 62px;
+        }
+
+        .moft-logo {
+          top: 14px;
+          right: 14px;
+          width: 60px;
+        }
+
+        .moft-label {
+          padding: 3px 8px;
+          font-size: 10px;
+        }
+
+        .moft-title {
+          font-size: 18px;
+        }
+
+        .moft-code-row {
+          flex-wrap: nowrap;
+          margin-top: 8px;
+        }
+
+        .moft-code {
+          flex: 0 1 auto;
+          min-height: 40px;
+          padding: 0 10px;
+          font-size: 14px;
+        }
+
+        .moft-code small {
+          font-size: 10px;
+        }
+
+        .moft-cta {
+          min-height: 40px;
+          padding: 0 10px;
+          font-size: 12px;
+        }
+
+        .moft-terms {
+          gap: 1px 10px;
+          margin-top: 8px;
+          font-size: 10px;
+        }
       }
 
       .notice {
@@ -401,6 +604,42 @@
         object-fit: cover;
       }
 
+      .item-media {
+        display: grid;
+        gap: 6px;
+        justify-items: center;
+      }
+
+      .yt-btn {
+        display: inline-flex;
+        gap: 3px;
+        align-items: center;
+        justify-content: center;
+        width: 72px;
+        min-height: 26px;
+        border-radius: 6px;
+        background: #f00;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+        transition:
+          transform 0.18s ease,
+          opacity 0.18s ease;
+      }
+
+      .yt-btn:hover {
+        transform: translateY(-1px);
+        opacity: 0.88;
+      }
+
+      .yt-btn svg {
+        flex: 0 0 auto;
+        width: 12px;
+        height: 12px;
+        fill: currentColor;
+      }
+
       .item-main {
         min-width: 0;
       }
@@ -529,13 +768,34 @@
         line-height: 1.8;
       }
 
+      .footer-social {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+      }
+
+      .footer-social .social-link {
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--line);
+        background: #fff;
+        color: #35507a;
+        box-shadow: 0 8px 20px rgba(19, 50, 100, 0.1);
+      }
+
+      .footer-social .social-link:hover {
+        background: #f2f7ff;
+        color: var(--blue);
+      }
+
       @media (min-width: 640px) {
         .page {
           padding-top: 32px;
         }
 
         .profile {
-          min-height: 260px;
           margin: 0;
           border-radius: 24px;
           padding: 32px 34px;
@@ -577,6 +837,12 @@
           width: 84px;
         }
 
+        .yt-btn {
+          width: 84px;
+          min-height: 28px;
+          font-size: 11px;
+        }
+
         .item-actions {
           flex-direction: column;
         }
@@ -597,31 +863,28 @@
               <span>仕事の依頼はこちら</span>
               <strong>gadget.man.n.sns@gmail.com</strong>
             </a>
-            <div class="social-links" aria-label="SNSリンク">
-              <a class="social-link" href="https://www.youtube.com/@gadget_man_n" target="_blank" rel="noopener" aria-label="YouTube">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.6-.8-2-.9C16 4 12 4 12 4s-4 0-6.8.2c-.4.1-1.3.1-2 .9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.8v1.7c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.8.8 2.2.9 1.6.2 6.6.2 6.6.2s4 0 6.8-.2c.4-.1 1.3-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.7c0-1.8-.2-3.6-.2-3.6ZM10.2 14.7V8.5l5.3 3.1-5.3 3.1Z" />
-                </svg>
-              </a>
-              <a class="social-link" href="https://www.instagram.com/gadget_man_n/" target="_blank" rel="noopener" aria-label="Instagram">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M7.4 2.8h9.2c2.5 0 4.6 2.1 4.6 4.6v9.2c0 2.5-2.1 4.6-4.6 4.6H7.4c-2.5 0-4.6-2.1-4.6-4.6V7.4c0-2.5 2.1-4.6 4.6-4.6Zm0 2A2.6 2.6 0 0 0 4.8 7.4v9.2a2.6 2.6 0 0 0 2.6 2.6h9.2a2.6 2.6 0 0 0 2.6-2.6V7.4a2.6 2.6 0 0 0-2.6-2.6H7.4Zm4.6 3.3a3.9 3.9 0 1 1 0 7.8 3.9 3.9 0 0 1 0-7.8Zm0 2a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8Zm4.2-2.7a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z" />
-                </svg>
-              </a>
-              <a class="social-link" href="https://www.tiktok.com/@gadget_man_n" target="_blank" rel="noopener" aria-label="TikTok">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M15.4 3c.4 2.6 1.9 4.2 4.4 4.4v3.1a7.3 7.3 0 0 1-4.3-1.4v6.2c0 3.2-2.2 5.7-5.5 5.7a5.4 5.4 0 0 1-5.6-5.3c0-3 2.4-5.3 5.4-5.3.4 0 .8 0 1.1.1v3.3a2.7 2.7 0 0 0-1.1-.2 2.1 2.1 0 1 0 2.1 2.1V3h3.5Z" />
-                </svg>
-              </a>
-              <a class="social-link" href="https://x.com/gadget_man_n" target="_blank" rel="noopener" aria-label="X">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M14.3 10.3 21.6 2h-1.7l-6.4 7.2L8.5 2H2.7l7.7 11L2.7 22h1.7l6.8-7.8 5.4 7.8h5.8l-8.1-11.7Zm-2.4 2.8-.8-1.1-6.2-8.7h2.8l5 7.1.8 1.1 6.5 9.2h-2.8l-5.3-7.6Z" />
-                </svg>
-              </a>
-            </div>
           </div>
         </div>
       </header>
+
+      <section class="moft-banner" aria-label="MOFT公式サイトのクーポン">
+        <img class="moft-logo" src="assets/moft-logo.png" alt="MOFT" />
+        <div class="moft-head">
+          <span class="moft-label">MOFT公式サイト限定クーポン</span>
+          <p class="moft-title">全商品 <em>500円オフ</em></p>
+        </div>
+        <div class="moft-code-row">
+          <button id="moftCopy" class="moft-code" type="button" aria-label="クーポンコード man2026 をコピー">
+            man2026<small id="moftCopyHint">タップでコピー</small>
+          </button>
+          <a class="moft-cta" href="https://www.moftjapan.com/" target="_blank" rel="noopener">MOFT公式サイトへ</a>
+        </div>
+        <ul class="moft-terms">
+          <li>※公式サイト全商品対象</li>
+          <li>※セール価格との併用可能</li>
+          <li>※2026年12月31日まで有効</li>
+        </ul>
+      </section>
 
       <div class="notice">
         <span class="notice-mark">PR</span>
@@ -653,6 +916,28 @@
       </section>
 
       <footer>
+        <div class="footer-social" aria-label="SNSリンク">
+          <a class="social-link" href="https://www.youtube.com/@gadget_man_n" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21.6 7.2s-.2-1.5-.8-2.1c-.8-.8-1.6-.8-2-.9C16 4 12 4 12 4s-4 0-6.8.2c-.4.1-1.3.1-2 .9-.6.6-.8 2.1-.8 2.1S2.2 9 2.2 10.8v1.7c0 1.8.2 3.6.2 3.6s.2 1.5.8 2.1c.8.8 1.8.8 2.2.9 1.6.2 6.6.2 6.6.2s4 0 6.8-.2c.4-.1 1.3-.1 2-.9.6-.6.8-2.1.8-2.1s.2-1.8.2-3.6v-1.7c0-1.8-.2-3.6-.2-3.6ZM10.2 14.7V8.5l5.3 3.1-5.3 3.1Z" />
+            </svg>
+          </a>
+          <a class="social-link" href="https://www.instagram.com/gadget_man_n/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.4 2.8h9.2c2.5 0 4.6 2.1 4.6 4.6v9.2c0 2.5-2.1 4.6-4.6 4.6H7.4c-2.5 0-4.6-2.1-4.6-4.6V7.4c0-2.5 2.1-4.6 4.6-4.6Zm0 2A2.6 2.6 0 0 0 4.8 7.4v9.2a2.6 2.6 0 0 0 2.6 2.6h9.2a2.6 2.6 0 0 0 2.6-2.6V7.4a2.6 2.6 0 0 0-2.6-2.6H7.4Zm4.6 3.3a3.9 3.9 0 1 1 0 7.8 3.9 3.9 0 0 1 0-7.8Zm0 2a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8Zm4.2-2.7a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z" />
+            </svg>
+          </a>
+          <a class="social-link" href="https://www.tiktok.com/@gadget_man_n" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15.4 3c.4 2.6 1.9 4.2 4.4 4.4v3.1a7.3 7.3 0 0 1-4.3-1.4v6.2c0 3.2-2.2 5.7-5.5 5.7a5.4 5.4 0 0 1-5.6-5.3c0-3 2.4-5.3 5.4-5.3.4 0 .8 0 1.1.1v3.3a2.7 2.7 0 0 0-1.1-.2 2.1 2.1 0 1 0 2.1 2.1V3h3.5Z" />
+            </svg>
+          </a>
+          <a class="social-link" href="https://x.com/gadget_man_n" target="_blank" rel="noopener" aria-label="X">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14.3 10.3 21.6 2h-1.7l-6.4 7.2L8.5 2H2.7l7.7 11L2.7 22h1.7l6.8-7.8 5.4 7.8h5.8l-8.1-11.7Zm-2.4 2.8-.8-1.1-6.2-8.7h2.8l5 7.1.8 1.1 6.5 9.2h-2.8l-5.3-7.6Z" />
+            </svg>
+          </a>
+        </div>
         本ページのリンクにはアフィリエイト広告を含みます。<br />
         © ガジェ⌘ガジェット伝道師
       </footer>
@@ -676,35 +961,50 @@
 
       const items = [
         {
+          name: "InnAIO AI翻訳機 T10",
+          category: "other",
+          categories: ["iphone", "other"],
+          icon: "I",
+          postedAt: "2026-07-14",
+          price: "¥31,999",
+          desc: "自分の声そのままで140以上の言語に翻訳できる、スマホ背面に付けるAI翻訳機。",
+          links: [
+            { url: "https://innaio.info/gadget_man", label: "Amazonでチェック" },
+            { url: "https://innaio.info/43OX3J8", label: "公式サイトを見る" },
+          ],
+          thumbnail: "thumbnails/innaio-t10.jpg",
+          youtube: "https://www.youtube.com/shorts/LhJbOwMMPIg",
+        },
+        {
           name: "K&F CONCEPT MagSafeライト JPKF34.053",
           category: "iphone",
           categories: ["iphone", "other"],
           icon: "K",
-          badge: "7/10紹介",
+          postedAt: "2026-07-10",
           price: "¥2,400",
           desc: "MagSafeで装着でき、スマホ撮影の明るさを手軽に足せるライト。",
           links: [{ url: "https://amzn.to/4rp1wvN" }],
           thumbnail: "thumbnails/jpkf34-053.jpg",
-          recent: true,
+          youtube: "https://www.youtube.com/shorts/WfiWe-j-S4A",
         },
         {
           name: "K&F CONCEPT 自撮り棒 三脚 KF15.0015",
           category: "iphone",
           categories: ["iphone", "other"],
           icon: "K",
-          badge: "7/10紹介",
+          postedAt: "2026-07-10",
           price: "¥3,382",
           desc: "スマホ撮影やライブ配信で角度を固定しやすい自撮り棒三脚。",
           links: [{ url: "https://amzn.to/3LW67Xh" }],
           thumbnail: "thumbnails/kf15-0015.jpg",
-          recent: true,
+          youtube: "https://www.youtube.com/shorts/WfiWe-j-S4A",
         },
         {
           name: "Wanbo プロジェクター T2 Ultra-GTV",
           category: "other",
           categories: ["coupon", "other"],
           icon: "W",
-          badge: "7/7紹介",
+          postedAt: "2026-07-07",
           badgeType: "coupon",
           price: "-",
           desc: "Google TV搭載で動画アプリを楽しみやすい、持ち運び向けプロジェクター。",
@@ -713,14 +1013,14 @@
           couponExpires: "2026-07-13T23:59:59+09:00",
           links: [{ url: "https://amazon.wanbo.cn/T2U_gadgetman" }],
           thumbnail: "thumbnails/t2-ultra-gtv.jpg",
-          recent: true,
+          youtube: "https://www.youtube.com/shorts/yAfTccAQ5FI",
         },
         {
           name: "Timekettle AI通話 翻訳機能付きイヤホン W4 Pro",
           category: "earphone",
           categories: ["coupon", "earphone", "other"],
           icon: "T",
-          badge: "7/1紹介",
+          postedAt: "2026-07-01",
           badgeType: "coupon",
           price: "¥68,980",
           desc: "AI通話翻訳機能を備え、海外との会話やオンライン通話をサポートするイヤホン。",
@@ -728,111 +1028,111 @@
           couponActive: true,
           links: [{ url: "https://amzn.to/3SX5RKx" }],
           thumbnail: "thumbnails/w4-pro.jpg",
-          recent: true,
+          youtube: "https://www.youtube.com/shorts/0lK3Tp1T6S4",
         },
         {
           name: "Wanbo プロジェクター ToGo Pro",
           category: "other",
           categories: ["other"],
           icon: "W",
-          badge: "6/19紹介",
+          postedAt: "2026-06-19",
           price: "¥37,499",
           desc: "持ち運びやすく、寝室や外出先でも映像を楽しみやすい小型プロジェクター。",
           links: [{ url: "https://amazon.wanbo.cn/TGP_gadgetman" }, { url: "https://a.r10.to/hkQE67" }],
           thumbnail: "thumbnails/togo-pro.jpg",
-          recent: true,
+          youtube: "https://www.youtube.com/shorts/XD5d_PthRVY",
         },
         {
           name: "Ulanzi MagSafeライト LM23",
           category: "iphone",
           categories: ["iphone", "other"],
           icon: "U",
-          badge: "6/7紹介",
+          postedAt: "2026-06-07",
           badgeType: "hot",
           price: "¥2,890",
           desc: "スマホに磁力で付けて、暗い場所の撮影や自撮りを明るく補助。",
           links: [{ url: "https://amzn.to/4tQBxOs" }, { url: "https://a.r10.to/hgzpgw" }],
           thumbnail: "thumbnails/lm23.jpg",
-          recent: true,
+          youtube: "https://www.youtube.com/shorts/sBg5yytBU6k",
         },
         {
           name: "ORICO エンクロージャー AP80F",
           category: "iphone",
           categories: ["iphone", "desk"],
           icon: "O",
-          badge: "6/4紹介",
+          postedAt: "2026-06-04",
           price: "¥4,899",
           desc: "M.2 SSDを外付け化して、データ移行やバックアップに使えるケース。",
           links: [{ url: "https://amzn.to/4uByjPH" }],
           thumbnail: "thumbnails/ap80f.jpg",
-          recent: true,
+          youtube: "https://www.youtube.com/shorts/hito7zt1doE",
         },
         {
           name: "AULA キーボード Hero68J-BK-BO",
           category: "desk",
           categories: ["mac", "desk"],
           icon: "A",
-          badge: "5/22紹介",
+          postedAt: "2026-05-22",
           price: "¥17,800",
           desc: "省スペースでも打ちやすい、デスク作業向けメカニカルキーボード。",
           links: [{ url: "https://a.r10.to/h8Iebq" }, { url: "https://aulakeyboard.co.jp/" }],
           thumbnail: "thumbnails/hero68j-bk-bo.jpg",
-          recent: true,
+          youtube: "https://www.youtube.com/shorts/yy7ZPXkQPBU",
         },
         {
           name: "AULA キーボード F99J-SI-BG",
           category: "desk",
           categories: ["mac", "desk"],
           icon: "A",
-          badge: "5/21紹介",
+          postedAt: "2026-05-21",
           price: "¥18,800",
           desc: "テンキー付きで作業効率を落としにくい、普段使い向けキーボード。",
           links: [{ url: "https://a.r10.to/h51sse" }, { url: "https://aulakeyboard.co.jp/" }],
           thumbnail: "thumbnails/f99j-si-bg.jpg",
-          recent: true,
+          youtube: "https://www.youtube.com/shorts/QuKkm9Tb8WU",
         },
         {
           name: "SOUNDPEATS イヤカフ型イヤホン UU2",
           category: "earphone",
           categories: ["earphone"],
           icon: "S",
-          badge: "5/20紹介",
+          postedAt: "2026-05-20",
           price: "¥6,188",
           desc: "耳をふさがず周囲の音も聞きやすい、ながら聴き向けイヤホン。",
           links: [{ url: "https://amzn.to/42JmMSI" }],
           thumbnail: "thumbnails/uu2-earcuff-earbuds.jpg",
-          recent: true,
+          youtube: "https://www.youtube.com/shorts/x4pkSdYliFo",
         },
         {
           name: "UMEVO AIボイスレコーダー Note Plus",
           category: "iphone",
           categories: ["iphone", "other"],
           icon: "U",
-          badge: "5/19紹介",
+          postedAt: "2026-05-19",
           price: "¥23,600",
           desc: "会議やメモ音声を録音し、AI活用で振り返りやすくするレコーダー。",
           links: [{ url: "https://jp.umevo.ai/" }],
           thumbnail: "thumbnails/umevo-note-plus.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/nrdUTXBhqDY",
         },
         {
           name: "ORICO USBメモリ CB05",
           category: "iphone",
           categories: ["iphone", "ipad", "mac", "desk"],
           icon: "O",
-          badge: "5/12紹介",
+          postedAt: "2026-05-12",
           price: "¥3,280",
           desc: "PCやスマホ間のデータ移動に使いやすい、コンパクトなUSBメモリ。",
           links: [{ url: "https://amzn.to/48vOGVv" }],
           thumbnail: "thumbnails/cb05.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/u8yjYLypIlc",
         },
         {
           name: "ORICO 8-in-1電源タップ AP3",
           category: "charger",
           categories: ["coupon", "charger", "desk"],
           icon: "O",
-          badge: "5/1紹介",
+          postedAt: "2026-05-01",
           badgeType: "coupon",
           price: "¥2,990",
           desc: "AC電源とUSB充電をまとめられる、デスク向け多機能電源タップ。",
@@ -841,223 +1141,211 @@
           couponExpires: "2026-08-06T23:59:59+09:00",
           links: [{ url: "https://amzn.to/3Qx6zNH" }],
           thumbnail: "thumbnails/ap3-3a2u2c-65-jp.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/KfzBSx0joUk",
         },
         {
           name: "Wanbo プロジェクター Vali 1 Pro",
           category: "other",
           categories: ["other"],
           icon: "W",
-          badge: "4/8紹介",
+          postedAt: "2026-04-08",
           price: "¥39,999",
           desc: "自宅で大画面を楽しみたい人向けの、据え置き寄りプロジェクター。",
           links: [{ url: "https://amazon.wanbo.cn/v1p_gadget_man_n" }, { url: "https://a.r10.to/hHM1Xl" }],
           thumbnail: "thumbnails/vali-1-pro.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/veMnVy8b7b8",
         },
         {
           name: "viaim AIイヤホン RecDot",
           category: "earphone",
           categories: ["earphone", "desk"],
           icon: "V",
-          badge: "4/1紹介",
+          postedAt: "2026-04-01",
           price: "¥34,800",
           desc: "録音や通話まわりのAI機能を備えた、仕事にも使いやすいイヤホン。",
           links: [{ url: "https://amzn.to/3NbAzxh" }, { url: "https://www.viaim.ai/" }],
           thumbnail: "thumbnails/recdot.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/xhvA3-7eG9I",
         },
         {
           name: "viaim AIボイスレコーダー NoteKit",
           category: "mac",
           categories: ["mac", "desk"],
           icon: "V",
-          badge: "4/1紹介",
+          postedAt: "2026-04-01",
           price: "¥13,800",
           desc: "会議や取材の音声を残し、文字起こし作業を助けるレコーダー。",
           links: [{ url: "https://amzn.to/40B8PVQ" }, { url: "https://www.viaim.ai/" }],
           thumbnail: "thumbnails/notekit.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/afUKEUP99hk",
         },
         {
           name: "HUAWEI スマートウォッチ Band 11 Pro",
           category: "other",
           categories: ["other"],
           icon: "H",
-          badge: "3/25紹介",
+          postedAt: "2026-03-25",
           price: "¥10,800",
           desc: "通知確認や健康管理を手元で見やすくするスマートウォッチ。",
           links: [{ url: "https://amzn.to/4lFfsQA" }, { url: "https://a.r10.to/hg0jBc" }],
           thumbnail: "thumbnails/band-11-pro.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/qUK4AqYYOWU",
         },
         {
           name: "CASEKOO iPhoneケース MagicStand Pro シリーズ",
           category: "iphone",
           categories: ["iphone"],
           icon: "C",
-          badge: "3/24紹介",
+          postedAt: "2026-03-24",
           price: "¥5,409",
           desc: "スタンド機能付きで、動画視聴やMagSafeまわりも使いやすいiPhoneケース。",
           links: [{ url: "https://amzn.to/4otfMDh" }],
           thumbnail: "thumbnails/magicstand-pro-series.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/4rdaIKEEkNg",
         },
         {
           name: "CASEKOO iPhoneケース Basic Case Shirudoシリーズ",
           category: "iphone",
           categories: ["iphone"],
           icon: "C",
-          badge: "3/24紹介",
+          postedAt: "2026-03-24",
           price: "¥2,399",
           desc: "日常使いしやすい保護感と持ちやすさを重視したiPhoneケース。",
           links: [{ url: "https://amzn.to/4xpQQAM" }],
           thumbnail: "thumbnails/basic-case-shirudo-series.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/4rdaIKEEkNg",
         },
         {
           name: "Aulumu モバイルバッテリー M10",
           category: "iphone",
           categories: ["iphone", "applewatch", "powerbank"],
           icon: "A",
-          badge: "3/17紹介",
+          postedAt: "2026-03-17",
           price: "¥15,999",
           desc: "iPhoneやApple Watchをまとめて充電しやすいモバイルバッテリー。",
           links: [{ url: "https://amzn.to/4vajZP3" }, { url: "https://a.r10.to/hgvA84" }],
           thumbnail: "thumbnails/m10.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/01FotPfq7aE",
         },
         {
           name: "Aulumu MagSafeリング G09",
           category: "iphone",
           categories: ["iphone"],
           icon: "A",
-          badge: "3/17紹介",
+          postedAt: "2026-03-17",
           price: "¥6,899",
           desc: "MagSafeアクセサリーを使いやすくする、スマホ背面用リング。",
           links: [{ url: "https://amzn.to/4dzrBCS" }, { url: "https://a.r10.to/h5vm5e" }],
           thumbnail: "thumbnails/g09.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/01FotPfq7aE",
         },
         {
           name: "HIRUNEGAO 加重アイマスク NELAX",
           category: "other",
           categories: ["other"],
           icon: "H",
-          badge: "3/3紹介",
+          postedAt: "2026-03-03",
           price: "¥8,800",
           desc: "目元にほどよい重みをかけて、休憩時間を整えやすいアイマスク。",
           links: [{ url: "https://hirunegao.jp/products/nelax" }],
           thumbnail: "thumbnails/nelax-power-nap-for-dream.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/HtQZpayzeM4",
         },
         {
           name: "Founist 自撮りモニター Vlogmate Mini",
           category: "iphone",
           categories: ["iphone"],
           icon: "F",
-          badge: "3/2紹介",
+          postedAt: "2026-03-02",
           price: "¥8,499",
           desc: "背面カメラで自撮りするときに、構図を確認しやすくするモニター。",
           links: [{ url: "https://amzn.to/4bwSarj" }],
           thumbnail: "thumbnails/vlogmate-mini.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/-S_irtzvwY4",
         },
         {
           name: "TORRAS 2-in-1急速充電器 FlashEye",
           category: "iphone",
           categories: ["iphone", "ipad", "applewatch", "mac", "charger", "desk"],
           icon: "T",
-          badge: "2/28紹介",
+          postedAt: "2026-02-28",
           price: "¥8,499",
           desc: "iPhone、iPad、Apple Watchなどをまとめやすい2-in-1急速充電器。",
           links: [{ url: "https://amzn.to/4dkDVs3" }],
           thumbnail: "thumbnails/flasheye-all-in-one-charger.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/stAeodCPieU",
         },
         {
           name: "HUAWEI Wi-Fiルーター WiFi Mesh X3 Pro",
           category: "other",
           categories: ["other"],
           icon: "H",
-          badge: "2/20紹介",
+          postedAt: "2026-02-20",
           price: "-",
           desc: "家のネット環境を広く安定させたい人向けのメッシュWi-Fiルーター。",
           links: [{ url: "https://amzn.to/3Sp0PGq" }, { url: "https://a.r10.to/h9UdkV" }],
           thumbnail: "thumbnails/wifi-mesh-x3-pro.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/XavhDHwo9xQ",
         },
         {
           name: "HUAWEI イヤカフ型イヤホン FreeClip 2",
           category: "earphone",
           categories: ["earphone"],
           icon: "H",
-          badge: "2/20紹介",
+          postedAt: "2026-02-20",
           price: "-",
           desc: "耳をふさがず快適に使いやすい、オープン型のイヤカフイヤホン。",
           links: [{ url: "https://amzn.to/419YdgO" }, { url: "https://a.r10.to/h8bZ1q" }],
           thumbnail: "thumbnails/freeclip-2.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/XavhDHwo9xQ",
         },
         {
           name: "TRUEFREE イヤカフ型イヤホン Clip C10",
           category: "earphone",
           categories: ["earphone"],
           icon: "T",
-          badge: "2/11紹介",
+          postedAt: "2026-02-11",
           price: "¥3,744",
           desc: "軽い装着感で長時間使いやすい、ながら聴き向けイヤホン。",
           links: [{ url: "https://amzn.to/3ZIA0NP" }],
           thumbnail: "thumbnails/clip-c10.jpg",
-          recent: false,
-        },
-        {
-          name: "K&F CONCEPT 自撮り棒 三脚 KF15.0002V1",
-          category: "iphone",
-          categories: ["iphone"],
-          icon: "K",
-          badge: "2/6紹介",
-          price: "¥2,958",
-          desc: "持ち歩きやすく、外出先の撮影にも使いやすい自撮り棒三脚。",
-          links: [{ url: "https://amzn.to/3Z6kprg" }],
-          thumbnail: "thumbnails/kf15-0002v1.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/S6GP2wRngEk",
         },
         {
           name: "Wanbo プロジェクター Cube 1",
           category: "other",
           categories: ["other"],
           icon: "W",
-          badge: "2/4紹介",
+          postedAt: "2026-02-04",
           price: "¥19,999",
           desc: "省スペースで映像を楽しみたい人向けのコンパクトプロジェクター。",
           links: [{ url: "https://amazon.wanbo.cn/c1_gadget_man_n" }, { url: "https://a.r10.to/hYERUw" }],
           thumbnail: "thumbnails/cube-1.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/W1xTUAfz4xw",
         },
         {
           name: "cocopar モバイルモニター zs-156x",
           category: "desk",
           categories: ["desk"],
           icon: "C",
-          badge: "1/21紹介",
+          postedAt: "2026-01-21",
           price: "¥13,979",
           desc: "ノートPCやゲーム機の画面を増やせる、持ち運び向けモニター。",
           links: [{ url: "https://amzn.to/4puGbiX" }, { url: "https://a.r10.to/hRTOVl" }],
           thumbnail: "thumbnails/zs-156x.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/Tj0LwjEuctM",
         },
         {
           name: "SANWA SUPPLY 電源タップ 700-TAP083",
           category: "charger",
           categories: ["charger", "desk"],
           icon: "S",
-          badge: "1/6紹介",
+          postedAt: "2026-01-06",
           price: "¥4,780",
           desc: "デスク上の充電器やPC周辺機器をまとめやすい電源タップ。",
           links: [{ url: "https://amzn.to/44X9ymO" }, { url: "https://a.r10.to/h5GK0K" }],
           thumbnail: "thumbnails/700-tap083.jpg",
-          recent: false,
+          youtube: "https://www.youtube.com/shorts/F_0q4YkuDZI",
         },
       ];
 
@@ -1079,6 +1367,18 @@
       const emptyState = document.querySelector("#emptyState");
       const title = document.querySelector("#itemsTitle");
       let activeCategory = "recent";
+
+      // 投稿日（postedAt）の新しい順に並べて、上から10件を「直近紹介」にする
+      const RECENT_COUNT = 10;
+      const recentItems = new Set(
+        [...items].sort((a, b) => b.postedAt.localeCompare(a.postedAt)).slice(0, RECENT_COUNT),
+      );
+
+      // 「7/10紹介」のようなバッジ表記を投稿日から自動で作る
+      function postBadge(item) {
+        const [, month, day] = item.postedAt.split("-");
+        return `${Number(month)}/${Number(day)}紹介`;
+      }
 
       function couponIsActive(item) {
         if (!item.coupon || item.couponActive === false) return false;
@@ -1105,16 +1405,18 @@
 
       function getFilteredItems() {
         const keyword = input.value.trim().toLowerCase();
-        return items.filter((item) => {
+        return [...items]
+          .sort((a, b) => b.postedAt.localeCompare(a.postedAt))
+          .filter((item) => {
           const categoryMatch =
             activeCategory === "all" ||
-            (activeCategory === "recent" && item.recent) ||
+            (activeCategory === "recent" && recentItems.has(item)) ||
             (activeCategory === "coupon" && couponIsActive(item)) ||
             (activeCategory !== "coupon" && item.categories?.includes(activeCategory));
           const text =
-            `${item.name} ${item.desc} ${couponIsActive(item) ? item.coupon : ""} ${item.note || ""} ${item.badge} ${categoryLabels[item.category]} ${(item.categories || []).map((category) => categoryLabels[category] || category).join(" ")}`.toLowerCase();
+            `${item.name} ${item.desc} ${couponIsActive(item) ? item.coupon : ""} ${item.note || ""} ${postBadge(item)} ${categoryLabels[item.category]} ${(item.categories || []).map((category) => categoryLabels[category] || category).join(" ")}`.toLowerCase();
           return categoryMatch && (!keyword || text.includes(keyword));
-        });
+          });
       }
 
       function getThumbnailSrc(item) {
@@ -1157,16 +1459,23 @@
                 .join("");
               return `
               <article class="card">
-                <div class="thumb" aria-hidden="true">
+                <div class="item-media">
+                  <div class="thumb" aria-hidden="true">
+                    ${
+                      thumbnail
+                        ? `<img src="${thumbnail}" alt="" width="84" height="84" loading="lazy" onerror="this.replaceWith(document.createTextNode('${item.icon}'))">`
+                        : item.icon
+                    }
+                  </div>
                   ${
-                    thumbnail
-                      ? `<img src="${thumbnail}" alt="" width="84" height="84" loading="lazy" onerror="this.replaceWith(document.createTextNode('${item.icon}'))">`
-                      : item.icon
+                    item.youtube
+                      ? `<a class="yt-btn" href="${item.youtube}" target="_blank" rel="noopener" aria-label="${item.name}の紹介動画をYouTubeで見る"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5v-9l8 4.5-8 4.5Z"/></svg>YouTube</a>`
+                      : ""
                   }
                 </div>
                 <div class="item-main">
                   <div class="item-top">
-                    <span class="badge ${item.badgeType || ""}">${item.badge}</span>
+                    <span class="badge ${item.badgeType || ""}">${postBadge(item)}</span>
                     ${categoryBadges}
                   </div>
                   <h3 class="item-name">${item.name}</h3>
@@ -1177,7 +1486,7 @@
                     ${(item.links || [])
                       .map(
                         (link) =>
-                          `<a class="buy" href="${link.url}" target="_blank" rel="noopener">${getLinkLabel(link.url)}</a>`,
+                          `<a class="buy" href="${link.url}" target="_blank" rel="noopener">${link.label || getLinkLabel(link.url)}</a>`,
                       )
                       .join("")}
                   </div>
@@ -1223,6 +1532,20 @@
 
       renderTabs();
       renderItems();
+
+      const moftCopy = document.querySelector("#moftCopy");
+      const moftCopyHint = document.querySelector("#moftCopyHint");
+      moftCopy?.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText("man2026");
+          moftCopyHint.textContent = "コピーしました！";
+        } catch {
+          moftCopyHint.textContent = "長押しでコピーしてください";
+        }
+        setTimeout(() => {
+          moftCopyHint.textContent = "タップでコピー";
+        }, 2000);
+      });
     </script>
   </body>
 </html>

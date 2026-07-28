@@ -640,6 +640,50 @@
         fill: currentColor;
       }
 
+      .coupon-copy {
+        display: inline-flex;
+        gap: 4px;
+        width: 72px;
+        min-height: 30px;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 5px;
+        border: 1px solid rgba(24, 167, 123, 0.32);
+        border-radius: 6px;
+        background: #effbf6;
+        color: #0d5c45;
+        cursor: pointer;
+        font-size: 9px;
+        font-weight: 900;
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+        text-align: center;
+        transition:
+          transform 0.18s ease,
+          background 0.18s ease;
+      }
+
+      .coupon-copy:hover {
+        transform: translateY(-1px);
+        background: #dff7ed;
+      }
+
+      .coupon-copy.is-copied {
+        background: var(--green);
+        color: #fff;
+      }
+
+      .coupon-copy svg {
+        flex: 0 0 auto;
+        width: 15px;
+        height: 15px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.1;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
       .item-main {
         min-width: 0;
       }
@@ -843,6 +887,12 @@
           font-size: 11px;
         }
 
+        .coupon-copy {
+          width: 84px;
+          min-height: 32px;
+          font-size: 11px;
+        }
+
         .item-actions {
           flex-direction: column;
         }
@@ -961,7 +1011,41 @@
 
       const items = [
         {
-          name: "InnAIO AI翻訳機 T10",
+          name: "ORICO ドッキングステーション DKA20",
+          category: "desk",
+          categories: ["coupon", "mac", "charger", "desk", "other"],
+          icon: "O",
+          postedAt: "2026-07-28",
+          badgeType: "coupon",
+          price: "¥16,999",
+          desc: "MacやPCまわりの接続をまとめて、デスク上の配線をすっきりさせやすいドッキングステーション。",
+          coupon: "Amazonコード：RG2WA9SK\nコード入力で20%オフ\nページ内クーポンと併用可能\n有効期限：2026年8月31日(月) 23:59 JST",
+          couponCode: "RG2WA9SK",
+          couponActive: true,
+          couponExpires: "2026-08-31T23:59:59+09:00",
+          links: [{ url: "https://amzn.to/4p9NwGe" }],
+          thumbnail: "thumbnails/dka20.jpg",
+          youtube: "https://www.youtube.com/shorts/EEYbOKoiYGs",
+        },
+        {
+          name: "ORICO カードリーダー AIR5C",
+          category: "iphone",
+          categories: ["coupon", "iphone", "ipad", "mac", "charger", "desk", "other"],
+          icon: "O",
+          postedAt: "2026-07-22",
+          badgeType: "coupon",
+          price: "¥4,079",
+          desc: "iPhoneやiPad、PCで写真や動画データを移しやすくする、持ち歩き向けカードリーダー。",
+          coupon: "Amazon割引コード：IB52MID8\nコード入力で15%オフ\n有効期限：2026年8月22日(土) 23:59 JST",
+          couponCode: "IB52MID8",
+          couponActive: true,
+          couponExpires: "2026-08-22T23:59:59+09:00",
+          links: [{ url: "https://amzn.to/4f6oFyx" }],
+          thumbnail: "thumbnails/air5c.jpg",
+          youtube: "https://www.youtube.com/shorts/dY7X8IIu2Mg",
+        },
+        {
+          name: "InnAIO AI同時通訳 音声翻訳機 T10",
           category: "other",
           categories: ["iphone", "other"],
           icon: "I",
@@ -976,12 +1060,24 @@
           youtube: "https://www.youtube.com/shorts/LhJbOwMMPIg",
         },
         {
+          name: "GIAI PHOTONICS CO., LTD iPhoneケース PicChange Case",
+          category: "iphone",
+          categories: ["iphone", "other"],
+          icon: "G",
+          postedAt: "2026-07-05",
+          badgeType: "crowdfunding",
+          price: "¥8,173",
+          desc: "背面デザインを気分に合わせて変えられる、見た目を楽しみやすいiPhoneケース。",
+          links: [{ url: "https://www.makuake.com/project/photo-iphone-case/", label: "クラファンを見る" }],
+          youtube: "https://www.youtube.com/shorts/t7jB-8hoW4o",
+        },
+        {
           name: "K&F CONCEPT MagSafeライト JPKF34.053",
           category: "iphone",
           categories: ["iphone", "other"],
           icon: "K",
           postedAt: "2026-07-10",
-          price: "¥2,400",
+          price: "-",
           desc: "MagSafeで装着でき、スマホ撮影の明るさを手軽に足せるライト。",
           links: [{ url: "https://amzn.to/4rp1wvN" }],
           thumbnail: "thumbnails/jpkf34-053.jpg",
@@ -993,7 +1089,7 @@
           categories: ["iphone", "other"],
           icon: "K",
           postedAt: "2026-07-10",
-          price: "¥3,382",
+          price: "-",
           desc: "スマホ撮影やライブ配信で角度を固定しやすい自撮り棒三脚。",
           links: [{ url: "https://amzn.to/3LW67Xh" }],
           thumbnail: "thumbnails/kf15-0015.jpg",
@@ -1009,6 +1105,7 @@
           price: "-",
           desc: "Google TV搭載で動画アプリを楽しみやすい、持ち運び向けプロジェクター。",
           coupon: "限定割引コード：ODP4R76C\n特典製品（スクリーン）付き\n有効期限：2026年7月13日(月) 23:59まで",
+          couponCode: "ODP4R76C",
           couponActive: true,
           couponExpires: "2026-07-13T23:59:59+09:00",
           links: [{ url: "https://amazon.wanbo.cn/T2U_gadgetman" }],
@@ -1025,6 +1122,7 @@
           price: "¥68,980",
           desc: "AI通話翻訳機能を備え、海外との会話やオンライン通話をサポートするイヤホン。",
           coupon: "5%OFFのクーポンコード：GADGETW4PRO",
+          couponCode: "GADGETW4PRO",
           couponActive: true,
           links: [{ url: "https://amzn.to/3SX5RKx" }],
           thumbnail: "thumbnails/w4-pro.jpg",
@@ -1137,6 +1235,7 @@
           price: "¥2,990",
           desc: "AC電源とUSB充電をまとめられる、デスク向け多機能電源タップ。",
           coupon: "割引コード：GADGETPDC\nコード入力で15%オフ\n有効期限：2026年8月6日(木) 23:59JST",
+          couponCode: "GADGETPDC",
           couponActive: true,
           couponExpires: "2026-08-06T23:59:59+09:00",
           links: [{ url: "https://amzn.to/3Qx6zNH" }],
@@ -1472,6 +1571,17 @@
                       ? `<a class="yt-btn" href="${item.youtube}" target="_blank" rel="noopener" aria-label="${item.name}の紹介動画をYouTubeで見る"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5v-9l8 4.5-8 4.5Z"/></svg>YouTube</a>`
                       : ""
                   }
+                  ${
+                    couponIsActive(item) && item.couponCode
+                      ? `<button class="coupon-copy" type="button" data-code="${item.couponCode}" aria-label="${item.name}のクーポンコード ${item.couponCode} をコピー">
+                          <span>${item.couponCode}</span>
+                          <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="9" y="9" width="10" height="10" rx="2" />
+                            <path d="M5 15H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1" />
+                          </svg>
+                        </button>`
+                      : ""
+                  }
                 </div>
                 <div class="item-main">
                   <div class="item-top">
@@ -1528,6 +1638,24 @@
           renderTabs();
         }
         renderItems();
+      });
+
+      grid.addEventListener("click", async (event) => {
+        const button = event.target.closest("button[data-code]");
+        if (!button) return;
+        const code = button.dataset.code;
+        const originalLabel = button.getAttribute("aria-label");
+        try {
+          await navigator.clipboard.writeText(code);
+          button.classList.add("is-copied");
+          button.setAttribute("aria-label", `${code} をコピーしました`);
+        } catch {
+          button.setAttribute("aria-label", `${code} を長押しでコピーしてください`);
+        }
+        setTimeout(() => {
+          button.classList.remove("is-copied");
+          button.setAttribute("aria-label", originalLabel);
+        }, 2000);
       });
 
       renderTabs();

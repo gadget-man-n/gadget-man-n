@@ -997,6 +997,7 @@
       const categories = [
         { id: "recent", label: "直近紹介" },
         { id: "coupon", label: "クーポン" },
+        { id: "crowdfunding", label: "クラファン" },
         { id: "iphone", label: "iPhone" },
         { id: "ipad", label: "iPad" },
         { id: "applewatch", label: "Apple Watch" },
@@ -1010,6 +1011,55 @@
       ];
 
       const items = [
+        {
+          name: "Shark ブロワー BlastBOSS",
+          category: "other",
+          categories: ["crowdfunding", "other"],
+          icon: "S",
+          postedAt: "2026-08-15",
+          badgeType: "crowdfunding",
+          price: "-",
+          desc: "最大85m/sの風で、洗車後の水滴や屋内外のホコリを吹き飛ばせる軽量コードレスブロワー。",
+          note: "クラウドファンディング：2026年8月23日まで",
+          crowdfundingActive: true,
+          crowdfundingExpires: "2026-08-23T23:59:59+09:00",
+          links: [{ url: "https://greenfunding.jp/sharkninja/projects/9467", label: "GREEN FUNDINGで見る" }],
+          thumbnail: "thumbnails/blastboss.jpg",
+          youtube: "https://www.youtube.com/shorts/JKyT8lCOSrk",
+        },
+        {
+          name: "TORRAS ガラスフィルム iPhone 16 Pro 用",
+          category: "iphone",
+          categories: ["iphone"],
+          icon: "T",
+          postedAt: "2026-08-05",
+          price: "¥2,980",
+          desc: "画面をキズや衝撃から守りやすく、iPhoneの表示をすっきり保護できるガラスフィルム。",
+          links: [{ url: "https://amzn.to/4fOMsU7" }, { url: "https://a.r10.to/hYDi85" }],
+          youtube: "https://www.youtube.com/shorts/xZVP0TfHThI",
+        },
+        {
+          name: "TORRAS iPhoneケース Ostand Q3 Air",
+          category: "iphone",
+          categories: ["iphone"],
+          icon: "T",
+          postedAt: "2026-08-05",
+          price: "¥9,980",
+          desc: "薄型スタンド一体型で、縦横の動画視聴や持ちやすさを両立しやすいiPhoneケース。",
+          links: [{ url: "https://amzn.to/4bf91j8" }, { url: "https://a.r10.to/hY4vou" }],
+          youtube: "https://www.youtube.com/shorts/xZVP0TfHThI",
+        },
+        {
+          name: "TORRAS カメラレンズカバー iPhone 16 Pro 用",
+          category: "iphone",
+          categories: ["iphone"],
+          icon: "T",
+          postedAt: "2026-08-05",
+          price: "¥2,980",
+          desc: "カメラまわりをキズや衝撃から守りつつ、レンズ部分をすっきり保護できるカバー。",
+          links: [{ url: "https://amzn.to/4wsruAW" }, { url: "https://a.r10.to/hPWraI" }],
+          youtube: "https://www.youtube.com/shorts/xZVP0TfHThI",
+        },
         {
           name: "ORICO ドッキングステーション DKA20",
           category: "desk",
@@ -1058,18 +1108,6 @@
           ],
           thumbnail: "thumbnails/innaio-t10.jpg",
           youtube: "https://www.youtube.com/shorts/LhJbOwMMPIg",
-        },
-        {
-          name: "GIAI PHOTONICS CO., LTD iPhoneケース PicChange Case",
-          category: "iphone",
-          categories: ["iphone", "other"],
-          icon: "G",
-          postedAt: "2026-07-05",
-          badgeType: "crowdfunding",
-          price: "¥8,173",
-          desc: "背面デザインを気分に合わせて変えられる、見た目を楽しみやすいiPhoneケース。",
-          links: [{ url: "https://www.makuake.com/project/photo-iphone-case/", label: "クラファンを見る" }],
-          youtube: "https://www.youtube.com/shorts/t7jB-8hoW4o",
         },
         {
           name: "K&F CONCEPT MagSafeライト JPKF34.053",
@@ -1451,6 +1489,7 @@
       const categoryLabels = Object.fromEntries(categories.map((category) => [category.id, category.label]));
       const categoryTitles = {
         coupon: "🉐おトクなクーポン発行中",
+        crowdfunding: "クラウドファンディング実施中",
         iphone: "iPhone関連",
         ipad: "iPad関連",
         applewatch: "Apple Watch関連",
@@ -1485,6 +1524,12 @@
         return true;
       }
 
+      function crowdfundingIsActive(item) {
+        if (item.crowdfundingActive === false) return false;
+        if (item.crowdfundingExpires && Date.now() > new Date(item.crowdfundingExpires).getTime()) return false;
+        return item.categories?.includes("crowdfunding");
+      }
+
       function renderTabs() {
         tabs.innerHTML = categories
           .map(
@@ -1511,7 +1556,8 @@
             activeCategory === "all" ||
             (activeCategory === "recent" && recentItems.has(item)) ||
             (activeCategory === "coupon" && couponIsActive(item)) ||
-            (activeCategory !== "coupon" && item.categories?.includes(activeCategory));
+            (activeCategory === "crowdfunding" && crowdfundingIsActive(item)) ||
+            (!["coupon", "crowdfunding"].includes(activeCategory) && item.categories?.includes(activeCategory));
           const text =
             `${item.name} ${item.desc} ${couponIsActive(item) ? item.coupon : ""} ${item.note || ""} ${postBadge(item)} ${categoryLabels[item.category]} ${(item.categories || []).map((category) => categoryLabels[category] || category).join(" ")}`.toLowerCase();
           return categoryMatch && (!keyword || text.includes(keyword));
@@ -1552,6 +1598,8 @@
             (item) => {
               const thumbnail = getThumbnailSrc(item);
               const categoryBadges = (item.categories || [item.category])
+                .filter((category) => category !== "coupon" || couponIsActive(item))
+                .filter((category) => category !== "crowdfunding" || crowdfundingIsActive(item))
                 .map((category) => categoryLabels[category] || category)
                 .filter((label, index, labels) => label !== item.badge && labels.indexOf(label) === index)
                 .map((label) => `<span class="badge">${label}</span>`)

@@ -61,17 +61,20 @@
     <style>
       :root {
         color-scheme: light;
-        --bg: #f4f7fb;
-        --surface: #ffffff;
-        --ink: #111827;
-        --muted: #65748b;
-        --line: #dbe4f0;
-        --blue: #1368e8;
-        --blue-dark: #14356e;
-        --cyan: #20a8ff;
-        --green: #18a77b;
-        --yellow: #f5b82e;
-        --shadow: 0 18px 50px rgba(19, 50, 100, 0.16);
+        --bg: #eef3f8;
+        --surface: rgba(255, 255, 255, 0.66);
+        --surface-strong: rgba(255, 255, 255, 0.82);
+        --ink: #111318;
+        --muted: #667085;
+        --line: rgba(255, 255, 255, 0.7);
+        --hairline: rgba(92, 112, 138, 0.18);
+        --blue: #0071e3;
+        --blue-dark: #0b1f3a;
+        --cyan: #3fb6ff;
+        --green: #19a974;
+        --yellow: #f6c85f;
+        --glass-blur: blur(24px) saturate(170%);
+        --shadow: 0 22px 60px rgba(26, 45, 72, 0.16);
       }
 
       * {
@@ -83,8 +86,8 @@
         min-height: 100vh;
         color: var(--ink);
         background:
-          radial-gradient(circle at 18% 4%, rgba(32, 168, 255, 0.24), transparent 30%),
-          linear-gradient(180deg, #edf5ff 0%, var(--bg) 46%, #ffffff 100%);
+          linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(232, 240, 249, 0.95) 44%, rgba(247, 250, 253, 0.98) 100%),
+          linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
         font-family:
           -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
           "Yu Gothic", "Meiryo", sans-serif;
@@ -114,17 +117,19 @@
         padding: 26px 18px 20px;
         color: #fff;
         background:
-          linear-gradient(132deg, rgba(16, 36, 84, 0.08), rgba(19, 104, 232, 0.18)),
-          linear-gradient(135deg, #102456 0%, #1368e8 54%, #1bb8ff 100%);
+          linear-gradient(132deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.08)),
+          linear-gradient(135deg, rgba(11, 31, 58, 0.93) 0%, rgba(0, 113, 227, 0.88) 58%, rgba(63, 182, 255, 0.78) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.42);
+        backdrop-filter: var(--glass-blur);
+        box-shadow: var(--shadow);
       }
 
       .profile::after {
         content: "";
         position: absolute;
-        inset: auto -70px -150px 34%;
-        height: 230px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.16);
+        inset: 0;
+        background: linear-gradient(120deg, rgba(255, 255, 255, 0.18), transparent 45%, rgba(255, 255, 255, 0.1));
+        pointer-events: none;
       }
 
       .profile-inner {
@@ -139,10 +144,10 @@
       .avatar {
         width: 104px;
         aspect-ratio: 1;
-        border: 4px solid rgba(255, 255, 255, 0.92);
+        border: 4px solid rgba(255, 255, 255, 0.84);
         border-radius: 24px;
         object-fit: cover;
-        box-shadow: 0 16px 34px rgba(6, 21, 57, 0.28);
+        box-shadow: 0 18px 42px rgba(6, 21, 57, 0.28);
       }
 
       h1 {
@@ -172,11 +177,11 @@
         min-height: 48px;
         margin-top: 18px;
         padding: 10px 13px;
-        border: 1px solid rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.66);
         border-radius: 8px;
-        background: #ffffff;
+        background: rgba(255, 255, 255, 0.76);
         color: var(--blue-dark);
-        backdrop-filter: blur(10px);
+        backdrop-filter: var(--glass-blur);
         box-shadow: 0 14px 30px rgba(6, 21, 57, 0.18);
       }
 
@@ -199,10 +204,11 @@
         width: 42px;
         height: 42px;
         place-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.38);
+        border: 1px solid rgba(255, 255, 255, 0.48);
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.22);
         color: #fff;
+        backdrop-filter: blur(18px) saturate(160%);
         box-shadow: 0 10px 24px rgba(6, 21, 57, 0.12);
         transition:
           transform 0.18s ease,
@@ -225,22 +231,21 @@
         overflow: hidden;
         margin: 18px 0 0;
         padding: 18px 16px;
-        border: 1px solid rgba(19, 104, 232, 0.18);
-        border-radius: 12px;
-        background: linear-gradient(125deg, #0d1f3d 0%, #14356e 52%, #1368e8 100%);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 8px;
+        background:
+          linear-gradient(130deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06)),
+          linear-gradient(125deg, rgba(13, 31, 61, 0.95) 0%, rgba(20, 53, 110, 0.9) 52%, rgba(0, 113, 227, 0.86) 100%);
         color: #fff;
-        box-shadow: 0 16px 38px rgba(10, 30, 70, 0.28);
+        backdrop-filter: var(--glass-blur);
+        box-shadow: 0 18px 42px rgba(10, 30, 70, 0.22);
       }
 
       .moft-banner::after {
         content: "";
         position: absolute;
-        top: -70px;
-        right: -60px;
-        width: 190px;
-        height: 190px;
-        border-radius: 50%;
-        background: rgba(245, 184, 46, 0.18);
+        inset: 0;
+        background: linear-gradient(115deg, transparent, rgba(246, 200, 95, 0.16) 62%, rgba(255, 255, 255, 0.18));
         pointer-events: none;
       }
 
@@ -261,7 +266,8 @@
         gap: 6px;
         padding: 4px 10px;
         border-radius: 999px;
-        background: var(--yellow);
+        border: 1px solid rgba(255, 255, 255, 0.44);
+        background: rgba(246, 200, 95, 0.86);
         color: #3c2a00;
         font-size: 11px;
         font-weight: 900;
@@ -301,10 +307,11 @@
         align-items: center;
         min-height: 44px;
         padding: 0 14px;
-        border: 2px dashed rgba(255, 255, 255, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.5);
         border-radius: 8px;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.16);
         color: #fff;
+        backdrop-filter: blur(18px) saturate(150%);
         cursor: pointer;
         font-size: 16px;
         font-weight: 900;
@@ -326,8 +333,10 @@
         min-height: 44px;
         padding: 0 16px;
         border-radius: 8px;
-        background: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        background: rgba(255, 255, 255, 0.82);
         color: var(--blue-dark);
+        box-shadow: 0 10px 24px rgba(6, 21, 57, 0.14);
         font-size: 13px;
         font-weight: 900;
         transition: transform 0.18s ease;
@@ -439,10 +448,12 @@
         align-items: flex-start;
         margin: 18px 0;
         padding: 13px 14px;
-        border: 1px solid #c8defc;
+        border: 1px solid var(--line);
         border-radius: 8px;
-        background: #eef6ff;
+        background: rgba(255, 255, 255, 0.58);
         color: #244267;
+        backdrop-filter: var(--glass-blur);
+        box-shadow: 0 12px 28px rgba(26, 45, 72, 0.08);
         font-size: 12px;
         line-height: 1.65;
       }
@@ -454,7 +465,7 @@
         height: 24px;
         place-items: center;
         border-radius: 999px;
-        background: var(--blue);
+        background: rgba(0, 113, 227, 0.92);
         color: #fff;
         font-size: 13px;
         font-weight: 900;
@@ -466,8 +477,8 @@
         z-index: 4;
         margin: 0 -16px;
         padding: 10px 16px 12px;
-        background: rgba(244, 247, 251, 0.88);
-        backdrop-filter: blur(16px);
+        background: rgba(238, 243, 248, 0.72);
+        backdrop-filter: var(--glass-blur);
       }
 
       .search {
@@ -480,7 +491,8 @@
         border: 1px solid var(--line);
         border-radius: 8px;
         background: var(--surface);
-        box-shadow: 0 8px 22px rgba(19, 50, 100, 0.08);
+        backdrop-filter: var(--glass-blur);
+        box-shadow: 0 12px 28px rgba(26, 45, 72, 0.1);
       }
 
       .search svg {
@@ -521,8 +533,10 @@
         padding: 0 14px;
         border: 1px solid var(--line);
         border-radius: 999px;
-        background: #fff;
+        background: rgba(255, 255, 255, 0.62);
         color: #354762;
+        backdrop-filter: blur(18px) saturate(150%);
+        box-shadow: 0 8px 18px rgba(26, 45, 72, 0.06);
         cursor: pointer;
         font-size: 13px;
         font-weight: 800;
@@ -538,8 +552,8 @@
       }
 
       .tab[aria-selected="true"] {
-        border-color: var(--blue);
-        background: var(--blue);
+        border-color: rgba(255, 255, 255, 0.7);
+        background: rgba(17, 19, 24, 0.9);
         color: #fff;
       }
 
@@ -577,10 +591,11 @@
         align-items: center;
         min-height: 116px;
         padding: 13px;
-        border: 1px solid rgba(219, 228, 240, 0.88);
+        border: 1px solid var(--line);
         border-radius: 8px;
-        background: rgba(255, 255, 255, 0.94);
-        box-shadow: 0 12px 28px rgba(19, 50, 100, 0.08);
+        background: var(--surface);
+        backdrop-filter: var(--glass-blur);
+        box-shadow: 0 16px 42px rgba(26, 45, 72, 0.12);
       }
 
       .thumb {
@@ -590,8 +605,9 @@
         aspect-ratio: 1;
         place-items: center;
         border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.76);
         background:
-          linear-gradient(150deg, rgba(19, 104, 232, 0.12), rgba(245, 184, 46, 0.14)),
+          linear-gradient(150deg, rgba(255, 255, 255, 0.9), rgba(232, 240, 249, 0.74)),
           #f8fbff;
         color: var(--blue-dark);
         font-size: 31px;
@@ -618,7 +634,8 @@
         width: 72px;
         min-height: 26px;
         border-radius: 6px;
-        background: #f00;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        background: rgba(255, 0, 0, 0.9);
         color: #fff;
         font-size: 10px;
         font-weight: 900;
@@ -648,10 +665,11 @@
         align-items: center;
         justify-content: center;
         padding: 4px 5px;
-        border: 1px solid rgba(24, 167, 123, 0.32);
+        border: 1px solid rgba(25, 169, 116, 0.28);
         border-radius: 6px;
-        background: #effbf6;
+        background: rgba(239, 251, 246, 0.72);
         color: #0d5c45;
+        backdrop-filter: blur(18px) saturate(150%);
         cursor: pointer;
         font-size: 9px;
         font-weight: 900;
@@ -665,7 +683,7 @@
 
       .coupon-copy:hover {
         transform: translateY(-1px);
-        background: #dff7ed;
+        background: rgba(223, 247, 237, 0.86);
       }
 
       .coupon-copy.is-copied {
@@ -702,29 +720,30 @@
         min-height: 22px;
         padding: 3px 8px;
         border-radius: 999px;
-        background: #eef4ff;
+        border: 1px solid rgba(255, 255, 255, 0.62);
+        background: rgba(238, 244, 255, 0.74);
         color: #23549d;
         font-size: 11px;
         font-weight: 800;
       }
 
       .badge.hot {
-        background: #fff3d8;
+        background: rgba(255, 243, 216, 0.78);
         color: #8a5c00;
       }
 
       .badge.value {
-        background: #e8f8f2;
+        background: rgba(232, 248, 242, 0.78);
         color: #087653;
       }
 
       .badge.coupon {
-        background: #e8f8f2;
+        background: rgba(232, 248, 242, 0.78);
         color: #087653;
       }
 
       .badge.crowdfunding {
-        background: #fff3d8;
+        background: rgba(255, 243, 216, 0.78);
         color: #8a5c00;
       }
 
@@ -745,9 +764,9 @@
       .coupon-note {
         margin: 0 0 10px;
         padding: 9px 10px;
-        border: 1px solid rgba(24, 167, 123, 0.22);
+        border: 1px solid rgba(25, 169, 116, 0.24);
         border-radius: 8px;
-        background: #effbf6;
+        background: rgba(239, 251, 246, 0.66);
         color: #0d5c45;
         font-size: 11px;
         font-weight: 800;
@@ -770,8 +789,10 @@
         min-height: 40px;
         padding: 0 12px;
         border-radius: 8px;
-        background: #111827;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        background: rgba(17, 19, 24, 0.92);
         color: #fff;
+        box-shadow: 0 10px 22px rgba(17, 19, 24, 0.12);
         font-size: 13px;
         font-weight: 900;
         text-align: center;
@@ -782,7 +803,7 @@
 
       .buy:hover {
         transform: translateY(-1px);
-        background: var(--blue);
+        background: rgba(0, 113, 227, 0.92);
       }
 
       .price {
@@ -795,10 +816,11 @@
       .empty {
         display: none;
         padding: 28px 16px;
-        border: 1px dashed #b8c7db;
+        border: 1px dashed rgba(92, 112, 138, 0.28);
         border-radius: 8px;
         color: var(--muted);
-        background: rgba(255, 255, 255, 0.72);
+        background: rgba(255, 255, 255, 0.62);
+        backdrop-filter: var(--glass-blur);
         text-align: center;
         font-size: 13px;
         line-height: 1.7;
@@ -824,7 +846,7 @@
         width: 44px;
         height: 44px;
         border: 1px solid var(--line);
-        background: #fff;
+        background: rgba(255, 255, 255, 0.66);
         color: #35507a;
         box-shadow: 0 8px 20px rgba(19, 50, 100, 0.1);
       }

@@ -1521,6 +1521,18 @@
           thumbnail: "thumbnails/700-tap083.jpg",
           youtube: "https://www.youtube.com/shorts/F_0q4YkuDZI",
         },
+        {
+          name: "Insta360 Flow 2 Pro スマホジンバル",
+          category: "other",
+          categories: ["other"],
+          icon: "I",
+          postedAt: "2026-01-01",
+          badge: "今回限り",
+          price: "-",
+          desc: "スマホ撮影時に手ブレを抑えながら、被写体を追いかけて撮りやすくする折りたたみ式ジンバル。",
+          links: [{ url: "https://amzn.to/4hQ0xTL", label: "Amazonで見る" }],
+          thumbnail: "thumbnails/insta360-flow-2-pro.jpg",
+        },
       ];
 
       const categoryLabels = Object.fromEntries(categories.map((category) => [category.id, category.label]));
@@ -1551,6 +1563,7 @@
 
       // 「7/10紹介」のようなバッジ表記を投稿日から自動で作る
       function postBadge(item) {
+        if (item.badge) return item.badge;
         const [, month, day] = item.postedAt.split("-");
         return `${Number(month)}/${Number(day)}紹介`;
       }

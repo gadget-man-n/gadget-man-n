@@ -1048,16 +1048,12 @@
         {
           name: "Shark ブロワー BlastBOSS",
           category: "other",
-          categories: ["crowdfunding", "other"],
+          categories: ["other"],
           icon: "S",
           postedAt: "2026-08-15",
-          badgeType: "crowdfunding",
           price: "-",
           desc: "最大85m/sの風で、洗車後の水滴や屋内外のホコリを吹き飛ばせる軽量コードレスブロワー。",
-          note: "クラウドファンディング：2026年8月23日まで",
-          crowdfundingActive: true,
-          crowdfundingExpires: "2026-08-23T23:59:59+09:00",
-          links: [{ url: "https://greenfunding.jp/sharkninja/projects/9467", label: "GREEN FUNDINGで見る" }],
+          links: [{ url: "https://greenfunding.jp/sharkninja/projects/9467", label: "商品ページを見る" }],
           thumbnail: "thumbnails/blastboss.jpg",
           youtube: "https://www.youtube.com/shorts/JKyT8lCOSrk",
         },
@@ -1117,16 +1113,11 @@
         {
           name: "ORICO カードリーダー AIR5C",
           category: "iphone",
-          categories: ["coupon", "iphone", "ipad", "mac", "charger", "desk", "other"],
+          categories: ["iphone", "ipad", "mac", "charger", "desk", "other"],
           icon: "O",
           postedAt: "2026-07-22",
-          badgeType: "coupon",
           price: "¥4,079",
           desc: "iPhoneやiPad、PCで写真や動画データを移しやすくする、持ち歩き向けカードリーダー。",
-          coupon: "Amazon割引コード：IB52MID8\nコード入力で15%オフ\n有効期限：2026年8月22日(土) 23:59 JST",
-          couponCode: "IB52MID8",
-          couponActive: true,
-          couponExpires: "2026-08-22T23:59:59+09:00",
           links: [{ url: "https://amzn.to/4f6oFyx" }],
           thumbnail: "thumbnails/air5c.jpg",
           youtube: "https://www.youtube.com/shorts/dY7X8IIu2Mg",
@@ -1173,16 +1164,11 @@
         {
           name: "Wanbo プロジェクター T2 Ultra-GTV",
           category: "other",
-          categories: ["coupon", "other"],
+          categories: ["other"],
           icon: "W",
           postedAt: "2026-07-07",
-          badgeType: "coupon",
           price: "-",
           desc: "Google TV搭載で動画アプリを楽しみやすい、持ち運び向けプロジェクター。",
-          coupon: "限定割引コード：ODP4R76C\n特典製品（スクリーン）付き\n有効期限：2026年7月13日(月) 23:59まで",
-          couponCode: "ODP4R76C",
-          couponActive: true,
-          couponExpires: "2026-07-13T23:59:59+09:00",
           links: [{ url: "https://amazon.wanbo.cn/T2U_gadgetman" }],
           thumbnail: "thumbnails/t2-ultra-gtv.jpg",
           youtube: "https://www.youtube.com/shorts/yAfTccAQ5FI",
@@ -1303,16 +1289,11 @@
         {
           name: "ORICO 8-in-1電源タップ AP3",
           category: "charger",
-          categories: ["coupon", "charger", "desk"],
+          categories: ["charger", "desk"],
           icon: "O",
           postedAt: "2026-05-01",
-          badgeType: "coupon",
           price: "¥2,990",
           desc: "AC電源とUSB充電をまとめられる、デスク向け多機能電源タップ。",
-          coupon: "割引コード：GADGETPDC\nコード入力で15%オフ\n有効期限：2026年8月6日(木) 23:59JST",
-          couponCode: "GADGETPDC",
-          couponActive: true,
-          couponExpires: "2026-08-06T23:59:59+09:00",
           links: [{ url: "https://amzn.to/3Qx6zNH" }],
           thumbnail: "thumbnails/ap3-3a2u2c-65-jp.jpg",
           youtube: "https://www.youtube.com/shorts/KfzBSx0joUk",
@@ -1581,7 +1562,13 @@
       }
 
       function renderTabs() {
-        tabs.innerHTML = categories
+        const visibleCategories = categories.filter((category) => {
+          if (category.id === "coupon") return items.some(couponIsActive);
+          if (category.id === "crowdfunding") return items.some(crowdfundingIsActive);
+          return true;
+        });
+
+        tabs.innerHTML = visibleCategories
           .map(
             (category) => `
               <button

@@ -1048,6 +1048,40 @@ footer { font-size: 12px; }
 .card { grid-template-columns: 84px 1fr; }  /* カードの画像列もPCと同じ84pxに統一 */
 
     </style>
+
+    <style id="insta-follow-style">
+/* フォロー導線（金継ぎ見立て問い9の処方・2026-08-27）色/余白/角丸/文字は承認済みトークンのみ */
+.insta-follow {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  border-radius: 999px;
+  background: #FFFFFF;
+  color: #0B1F3A;
+  font-size: 16px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(6, 21, 57, 0.14);
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.insta-follow:hover { transform: translateY(-1px); opacity: 0.9; }
+.insta-follow svg { flex: 0 0 auto; width: 18px; height: 18px; }
+.follow-note {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 12px;
+  line-height: 1.6;
+}
+@media (max-width: 639px) {
+  .insta-follow { min-height: 40px; margin-top: 10px; }
+  .follow-note { margin-top: 6px; }
+}
+    </style>
   </head>
   <body>
     <main class="page">
@@ -1063,6 +1097,11 @@ footer { font-size: 12px; }
               <span>仕事の依頼はこちら</span>
               <strong>gadget.man.n.sns@gmail.com</strong>
             </a>
+            <a class="insta-follow" href="https://www.instagram.com/gadget_man_n/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2m0 1.8c-3.15 0-3.52.01-4.76.07-1.08.05-1.67.23-2.06.38-.52.2-.89.44-1.28.83-.39.39-.63.76-.83 1.28-.15.39-.33.98-.38 2.06-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.05 1.08.23 1.67.38 2.06.2.52.44.89.83 1.28.39.39.76.63 1.28.83.39.15.98.33 2.06.38 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c1.08-.05 1.67-.23 2.06-.38.52-.2.89-.44 1.28-.83.39-.39.63-.76.83-1.28.15-.39.33-.98.38-2.06.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.05-1.08-.23-1.67-.38-2.06-.2-.52-.44-.89-.83-1.28a3.44 3.44 0 0 0-1.28-.83c-.39-.15-.98-.33-2.06-.38-1.24-.06-1.61-.07-4.76-.07m0 3.06a5.94 5.94 0 1 1 0 11.88 5.94 5.94 0 0 1 0-11.88m0 1.8a4.14 4.14 0 1 0 0 8.28 4.14 4.14 0 0 0 0-8.28m6.16-2.16a1.39 1.39 0 1 1-2.78 0 1.39 1.39 0 0 1 2.78 0"/></svg>
+              Instagramをフォロー
+            </a>
+            <p class="follow-note">最新の紹介はInstagramでお知らせしています</p>
           </div>
         </div>
       </header>

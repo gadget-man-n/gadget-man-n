@@ -920,6 +920,134 @@
         }
       }
     </style>
+
+    <style id="kintsugi-repair">
+/* ══ 金継ぎ追補スタイル（naoshi planner 自動生成・2026-08-27）══
+   元の規則と同じセレクタ・同じmediaで後から上書きする。:root の変数は触らない。
+   直した行: 20・手で見る行: 6 */
+/* [font] 役割「本文」の 12px を近いサイズ 15px へ寄せる（25%以内・一番使われている値へ） */
+.item-desc { font-size: 15px; }
+/* [font] 役割「本文」の 11px を近いサイズ 12px へ寄せる（25%以内・一番使われている値へ・極小） ⚠inherited（祖先 .moft-terms の規則を上書き＝配下全部に効く） */
+.moft-terms { font-size: 12px; }
+/* [font] 役割「本文」の 11px を近いサイズ 12px へ寄せる（25%以内・一番使われている値へ・極小） */
+.coupon-note { font-size: 12px; }
+/* [font] 役割「ボタン」の 13px を近いサイズ 16px へ寄せる（25%以内・一番使われている値へ） */
+.work-link strong { font-size: 16px; }
+/* [font] 役割「ボタン」の 13px を近いサイズ 16px へ寄せる（25%以内・一番使われている値へ） */
+.moft-cta { font-size: 16px; }
+/* [font] 役割「ボタン」の 13px を近いサイズ 16px へ寄せる（25%以内・一番使われている値へ） */
+.tab { font-size: 16px; }
+/* [font] 役割「ボタン」の 13px を近いサイズ 16px へ寄せる（25%以内・一番使われている値へ） */
+.buy { font-size: 16px; }
+/* [font] 役割「その他」の 13px を近いサイズ 12px へ寄せる（25%以内・一番使われている値へ） */
+.notice-mark { font-size: 12px; }
+/* [font] 役割「その他」の 11px を近いサイズ 12px へ寄せる（25%以内・一番使われている値へ・極小） */
+.moft-label { font-size: 12px; }
+/* [font] 役割「その他」の 11px を近いサイズ 12px へ寄せる（25%以内・一番使われている値へ・極小） */
+.badge { font-size: 12px; }
+/* [font] 役割「その他」の 11px を近いサイズ 12px へ寄せる（25%以内・一番使われている値へ・極小） */
+footer { font-size: 12px; }
+/* [font] 役割「補足」の 11px を近いサイズ 12px へ寄せる（25%以内・一番使われている値へ・極小） */
+.moft-code small { font-size: 12px; }
+/* [color] 似て非なる色 #F8FBFF → #FFFFFF */
+.thumb { background-color: #FFFFFF; }
+/* [color] 似て非なる色 #EEF4FF → #FFFFFF */
+.badge { background-color: #FFFFFF; }
+/* [color] 似て非なる色 #EFFBF6 → #FFFFFF */
+.coupon-copy { background-color: #FFFFFF; }
+/* [color] 似て非なる色 #EFFBF6 → #FFFFFF */
+.coupon-note { background-color: #FFFFFF; }
+/* [color] 似て非なる色 #244267 → #354762 */
+.notice { color: #354762; }
+/* [color] 似て非なる色 #E8F8F2 → #FFFFFF */
+.badge.coupon { background-color: #FFFFFF; }
+@media (min-width: 640px) {
+  /* [font] 役割「ボタン」の 11px を近いサイズ 12px へ寄せる（25%以内・一番使われている値へ・極小） */
+  .yt-btn { font-size: 12px; }
+  /* [font] 役割「ボタン」の 11px を近いサイズ 12px へ寄せる（25%以内・一番使われている値へ・極小） ⚠inherited（祖先 .coupon-copy の規則を上書き＝配下全部に効く） */
+  .coupon-copy { font-size: 12px; }
+}
+
+/* ══ 手仕事（金継ぎ・2026-08-27）══ */
+
+/* 泣き別れ対策: 文字サイズ統合で折れ目が動くため、文節折りを本文に当てる */
+.item-desc { word-break: auto-phrase; line-height: 1.6; }
+.coupon-note { line-height: 1.6; }
+
+/* モバイル幅の極小文字（メディア外の基準値）を12px以上へ */
+.yt-btn { font-size: 12px; }
+.coupon-copy { font-size: 12px; }
+.coupon-copy span { font-size: 12px; }
+#moftCopyHint { font-size: 12px; }
+
+/* 角丸を3種（8 / 24 / 999）へ */
+.yt-btn { border-radius: 8px; }
+.search-area { border-radius: 8px; }
+.avatar { border-radius: 24px; }
+.profile { border-radius: 0 0 24px 24px; }
+@media (min-width: 640px) {
+  .profile { border-radius: 24px; }
+  .search-area { border-radius: 8px; }
+}
+
+/* 画素検査の床割れ手当て: 白文字が沈む薄い側のグラデを、既存の紺〜青の濃い側へ寄せる */
+.profile {
+  background: linear-gradient(135deg, #0b1f3a 0%, #0b3e7e 55%, #0071e3 100%);
+}
+.profile::after { background: none; }
+.moft-banner {
+  background: linear-gradient(125deg, #0d1f3d 0%, #14356e 52%, #0b4a94 100%);
+}
+.moft-banner::after { background: none; }
+
+/* 読める色へ（役割の色相は保つ） */
+.yt-btn { background: #d60000; }            /* 白文字が床に届く赤へ（YouTube赤の濃色） */
+.work-link span { color: #005bb8; }         /* 青ラベルを床に届く青へ */
+.notice-mark { background: #0071e3; }       /* 半透明をやめて床を確定 */
+.notice { background: #ffffff; }            /* 半透明の地を不透明に＝計測可能に */
+.moft-title em { color: #f6c85f; }          /* 似て非なる黄を既存の黄へ（濃地で床OK） */
+
+/* 検索エリアの地を白へ（似て非なる色の解消・タブは不透明化） */
+.search-area { background: #ffffff; }
+.tab { background: #ffffff; }
+
+/* ══ 手仕事2巡目 ══ */
+.work-link span { color: #0c214d; }   /* 既存の紺（--blue-dark）へ統合＝床も届く */
+#itemCount { color: #354762; }        /* 既存の紺グレーへ＝床4.5に届く */
+.coupon-copy { border-radius: 8px; }  /* 角丸を3種へ（6→8） */
+#moftCopy { font-size: 16px; }        /* ボタンの文字サイズをモバイルでも2段に */
+
+/* ══ 手仕事3巡目（本人指摘 2026-08-27: MOFTボタンの途中改行・YouTubeボタンの見切れ）══ */
+/* スマホ幅: クーポンの行を折り返し可にして、MOFT公式サイトへ を1行の全幅ボタンに */
+@media (max-width: 639px) {
+  .moft-code-row { flex-wrap: wrap; }
+  .moft-cta { flex: 1 1 100%; white-space: nowrap; }
+}
+/* YouTubeボタン: 固定幅をやめて文字に合わせる（見切れ防止） */
+.yt-btn { width: auto; min-width: 84px; padding: 0 9px; }
+/* YouTubeボタンはサムネイルと同じ列幅に＝左端が揃い、見切れもしない */
+.yt-btn { width: 100%; min-width: 0; }
+
+/* ══ 手仕事4巡目（本人指摘 2026-08-27: スマホの1画面目に商品がほぼ見えない）══ */
+/* 文字サイズは落とさず、スマホ幅の縦の余白だけ締めて最初のカードを引き上げる */
+@media (max-width: 639px) {
+  .profile { padding: 16px 16px 12px; }
+  .moft-banner { margin-top: 12px; padding: 11px 14px 9px; }
+  .moft-code-row { margin-top: 6px; gap: 6px; }
+  .moft-cta { min-height: 38px; }
+  .moft-terms { margin: 6px 0 0; line-height: 1.6; }
+  .notice { margin: 10px 0; padding: 10px 12px; }
+  .search-area { padding: 6px 16px 8px; }
+  .section-head { margin: 14px 0 10px; }
+}
+
+/* ══ 手仕事5巡目（本人指摘 2026-08-27: YouTubeボタンの文字が右に張り付く）══ */
+/* 原因: スマホの画像列が72px固定で、太字12pxの「YouTube」に幅が足りず右へあふれていた */
+.thumb { width: 84px; }        /* 商品写真の列をPCと同じ84pxに統一（写真も大きく見やすく） */
+.yt-btn { padding: 0 6px; }    /* 84px列の中で文字の左右に均等な余白がとれる値 */
+.card { grid-template-columns: 84px 1fr; }  /* カードの画像列もPCと同じ84pxに統一 */
+
+    </style>
   </head>
   <body>
     <main class="page">

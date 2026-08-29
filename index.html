@@ -250,12 +250,13 @@
       }
 
       .moft-logo {
+        /* 余白なしロゴ(moft-logo-trim.png)を、クーポンラベルと上端・高さを揃えて置く */
         position: absolute;
-        top: 18px;
+        top: 21px;
         right: 16px;
         z-index: 1;
-        width: clamp(72px, 20vw, 96px);
-        height: auto;
+        height: 28px;
+        width: auto;
         filter: brightness(0) invert(1);
         opacity: 0.95;
       }
@@ -395,13 +396,14 @@
         }
 
         .moft-head {
-          padding-right: 62px;
+          padding-right: 90px;
         }
 
         .moft-logo {
-          top: 14px;
+          top: 11px;
           right: 14px;
-          width: 60px;
+          height: 26px;
+          width: auto;
         }
 
         .moft-label {
@@ -1117,7 +1119,7 @@ footer .work-link {
       </header>
 
       <section class="moft-banner" aria-label="MOFT公式サイトのクーポン">
-        <img class="moft-logo" src="assets/moft-logo.png" alt="MOFT" />
+        <img class="moft-logo" src="assets/moft-logo-trim.png" alt="MOFT" />
         <div class="moft-head">
           <span class="moft-label">MOFT公式サイト限定クーポン</span>
           <p class="moft-title">全商品 <em>500円オフ</em></p>

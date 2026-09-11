@@ -1102,6 +1102,52 @@ footer .work-link {
   color: #23549D;
 }
     </style>
+    <style id="video-groups-style">
+/* 動画グループ別の入口と商品一覧 */
+[hidden] { display: none !important; }
+.browse-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin-bottom: 8px; border-radius: 8px; background: #eef3f8; }
+.browse-switch button { min-height: 44px; border: 0; border-radius: 6px; background: transparent; color: #354762; font-size: 15px; font-weight: 800; cursor: pointer; }
+.browse-switch button[aria-pressed="true"] { background: #0b1f3a; color: #fff; box-shadow: 0 2px 6px #0b1f3a1a; }
+:is(button,a,input):focus-visible { outline: 3px solid #0071e3; outline-offset: 3px; }
+#catalog { scroll-margin-top: 164px; }
+.browse-hint { margin: 0 0 14px; color: #354762; font-size: 13px; line-height: 1.6; }
+.back-to-videos { display: inline-flex; align-items: center; min-height: 44px; margin-bottom: 8px; color: #005ab5; font-size: 14px; font-weight: 700; }
+.grid.video-grid { grid-template-columns: minmax(0,1fr); grid-auto-rows: auto; gap: 20px; }
+.video-group { overflow: hidden; min-width: 0; border: 1px solid #d5e1ef; border-radius: 16px; background: #fff; box-shadow: 0 8px 24px #0b1f3a0a; }
+.video-group-head { padding: 16px; background: #f0f5fc; border-bottom: 1px solid #e1e8f2; }
+.video-group-meta { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; color: #354762; font-size: 12px; font-weight: 700; }
+.video-group-meta span:last-child { margin-left: auto; white-space: nowrap; }
+.video-group-title { margin: 0; font-size: 18px; line-height: 1.5; overflow-wrap: anywhere; }
+.video-group-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.video-watch, .video-share { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 8px 12px; border-radius: 8px; font-size: 14px; font-weight: 700; }
+.video-watch { color: #fff; background: #c91818; }
+.video-watch svg { width: 16px; height: 16px; fill: currentColor; }
+.video-share { border: 1px solid #c8d6e7; background: #fff; color: #354762; cursor: pointer; }
+.video-share-fallback { flex-basis: 100%; margin: 0; font-size: 12px; overflow-wrap: anywhere; }
+.video-share-fallback a { text-decoration: underline; }
+.video-products { padding: 0 16px; }
+.video-products .card { grid-template-columns: 72px minmax(0,1fr); padding: 16px 0; border: 0; border-bottom: 1px solid #e6edf5; border-radius: 0; box-shadow: none; background: transparent; backdrop-filter: none; align-items: start; gap: 12px; }
+.video-products .card:last-child { border-bottom: 0; }
+.video-products .thumb { width: 72px; border: 1px solid #e6edf5; background: #fff; }
+.video-products .thumb img { object-fit: contain; }
+.video-products .item-name { font-size: 15px; line-height: 1.55; }
+.video-products .item-desc { font-size: 13px; line-height: 1.6; margin: 5px 0 10px; }
+.video-products .item-actions { margin-top: 8px; }
+.video-products .buy { min-height: 44px; font-size: 14px; }
+.video-products .yt-btn { min-height: 44px; padding: 4px 0; font-size: 11px; }
+.video-products .coupon-copy { width: 72px; min-height: 44px; }
+.item-group-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 4px; color: #005ab5; font-size: 12px; font-weight: 700; }
+@media (min-width: 640px) {
+  .video-group-head { padding: 20px; }
+  .video-products { padding: 0 20px; }
+  .video-products .card { grid-template-columns: 84px minmax(0,1fr); gap: 18px; }
+  .video-products .thumb { width: 84px; }
+  .video-products .item-name { font-size: 17px; }
+  .video-products .item-desc { font-size: 14px; }
+  .video-products .item-actions { flex-direction: row; }
+  .video-products .buy { flex: 0 1 auto; min-width: 180px; }
+}
+    </style>
   </head>
   <body>
     <main class="page">
@@ -1146,6 +1192,10 @@ footer .work-link {
       </div>
 
       <section class="search-area" aria-label="商品を探す">
+        <div class="browse-switch" id="browseSwitch" role="group" aria-label="探し方">
+          <button type="button" data-browse="products" aria-pressed="true">商品から探す</button>
+          <button type="button" data-browse="videos" aria-pressed="false">動画から探す</button>
+        </div>
         <label class="search">
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
             <path
@@ -1160,11 +1210,14 @@ footer .work-link {
         <div id="tabs" class="tabs" role="tablist" aria-label="カテゴリ"></div>
       </section>
 
-      <section aria-labelledby="itemsTitle">
+      <section id="catalog" aria-labelledby="itemsTitle">
         <div class="section-head">
           <h2 id="itemsTitle">直近紹介アイテム</h2>
           <span id="itemCount" class="count"></span>
         </div>
+        <a class="back-to-videos" id="backToVideos" href="#videos" hidden>← 動画の一覧に戻る</a>
+        <p class="browse-hint" id="browseHint" hidden></p>
+        <span id="copyStatus" role="status" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></span>
         <div id="itemGrid" class="grid"></div>
         <div id="emptyState" class="empty">該当するアイテムがありません。検索ワードを変えてみてください。</div>
       </section>
@@ -1222,6 +1275,8 @@ footer .work-link {
       const items = [
         {
           name: "ESR iPhoneケース Atelier ディープバーガンディー",
+          videoGroupId: "video-44",
+          videoGroupName: "イベント情報まとめ＋ESRセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "E",
@@ -1234,6 +1289,8 @@ footer .work-link {
         },
         {
           name: "ESR ガラスフィルム UltraFit Armorite® Proスクリーン保護フィルム",
+          videoGroupId: "video-44",
+          videoGroupName: "イベント情報まとめ＋ESRセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "E",
@@ -1246,6 +1303,8 @@ footer .work-link {
         },
         {
           name: "ESR MagSafeスタンド Find My対応カードケース ブラック",
+          videoGroupId: "video-44",
+          videoGroupName: "イベント情報まとめ＋ESRセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "E",
@@ -1257,6 +1316,8 @@ footer .work-link {
         },
         {
           name: "ESR MagSafeスタンド カードケース ライトブルー",
+          videoGroupId: "video-44",
+          videoGroupName: "イベント情報まとめ＋ESRセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "E",
@@ -1269,6 +1330,7 @@ footer .work-link {
         },
         {
           name: "Ewin キーボード EW-NKB303",
+          videoGroupId: "video-42",
           category: "desk",
           categories: ["iphone", "ipad", "mac", "desk"],
           icon: "E",
@@ -1281,6 +1343,7 @@ footer .work-link {
         },
         {
           name: "ORICO 外付けSSD K20MINI-1TB",
+          videoGroupId: "video-41",
           category: "iphone",
           categories: ["coupon", "iphone", "mac", "desk"],
           icon: "O",
@@ -1298,6 +1361,7 @@ footer .work-link {
         },
         {
           name: "RANVOO 電動歯ブラシ AirJet X5",
+          videoGroupId: "video-40",
           category: "other",
           categories: ["coupon", "other"],
           icon: "R",
@@ -1321,6 +1385,7 @@ footer .work-link {
         },
         {
           name: "Geometrical カード型三脚 Pocket Tripod PROv2",
+          videoGroupId: "video-39",
           category: "iphone",
           categories: ["iphone"],
           icon: "G",
@@ -1333,6 +1398,8 @@ footer .work-link {
         },
         {
           name: "TORRAS ガラスフィルム iPhone 16 Pro 用",
+          videoGroupId: "video-37",
+          videoGroupName: "TORRASセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "T",
@@ -1345,6 +1412,8 @@ footer .work-link {
         },
         {
           name: "TORRAS iPhoneケース Ostand Q3 Air",
+          videoGroupId: "video-37",
+          videoGroupName: "TORRASセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "T",
@@ -1357,6 +1426,8 @@ footer .work-link {
         },
         {
           name: "TORRAS カメラレンズカバー iPhone 16 Pro 用",
+          videoGroupId: "video-37",
+          videoGroupName: "TORRASセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "T",
@@ -1369,6 +1440,7 @@ footer .work-link {
         },
         {
           name: "ORICO ドッキングステーション DKA20",
+          videoGroupId: "video-36",
           category: "desk",
           categories: ["mac", "charger", "desk"],
           icon: "O",
@@ -1381,6 +1453,7 @@ footer .work-link {
         },
         {
           name: "ORICO カードリーダー AIR5C",
+          videoGroupId: "video-35",
           category: "iphone",
           categories: ["iphone", "ipad", "mac", "charger", "desk"],
           icon: "O",
@@ -1393,6 +1466,7 @@ footer .work-link {
         },
         {
           name: "InnAIO AI同時通訳 音声翻訳機 T10",
+          videoGroupId: "video-34",
           category: "other",
           categories: ["other"],
           icon: "I",
@@ -1408,6 +1482,8 @@ footer .work-link {
         },
         {
           name: "K&F CONCEPT MagSafeライト JPKF34.053",
+          videoGroupId: "video-33",
+          videoGroupName: "K&Fセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "K",
@@ -1420,6 +1496,8 @@ footer .work-link {
         },
         {
           name: "K&F CONCEPT 自撮り棒 三脚 KF15.0015",
+          videoGroupId: "video-33",
+          videoGroupName: "K&Fセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "K",
@@ -1432,6 +1510,7 @@ footer .work-link {
         },
         {
           name: "Wanbo プロジェクター T2 Ultra-GTV",
+          videoGroupId: "video-32",
           category: "other",
           categories: ["other"],
           icon: "W",
@@ -1444,6 +1523,7 @@ footer .work-link {
         },
         {
           name: "Timekettle AI通話 翻訳機能付きイヤホン W4 Pro",
+          videoGroupId: "video-30",
           category: "earphone",
           categories: ["coupon", "earphone"],
           icon: "T",
@@ -1460,6 +1540,7 @@ footer .work-link {
         },
         {
           name: "Wanbo プロジェクター ToGo Pro",
+          videoGroupId: "video-29",
           category: "other",
           categories: ["other"],
           icon: "W",
@@ -1472,6 +1553,7 @@ footer .work-link {
         },
         {
           name: "Ulanzi MagSafeライト LM23",
+          videoGroupId: "video-28",
           category: "iphone",
           categories: ["iphone"],
           icon: "U",
@@ -1485,6 +1567,7 @@ footer .work-link {
         },
         {
           name: "ORICO エンクロージャー AP80F",
+          videoGroupId: "video-27",
           category: "iphone",
           categories: ["iphone", "desk"],
           icon: "O",
@@ -1497,6 +1580,7 @@ footer .work-link {
         },
         {
           name: "AULA キーボード Hero68J-BK-BO",
+          videoGroupId: "video-26",
           category: "desk",
           categories: ["mac", "desk"],
           icon: "A",
@@ -1509,6 +1593,7 @@ footer .work-link {
         },
         {
           name: "AULA キーボード F99J-SI-BG",
+          videoGroupId: "video-25",
           category: "desk",
           categories: ["mac", "desk"],
           icon: "A",
@@ -1521,6 +1606,7 @@ footer .work-link {
         },
         {
           name: "SOUNDPEATS イヤカフ型イヤホン UU2",
+          videoGroupId: "video-24",
           category: "earphone",
           categories: ["earphone"],
           icon: "S",
@@ -1533,6 +1619,7 @@ footer .work-link {
         },
         {
           name: "UMEVO AIボイスレコーダー Note Plus",
+          videoGroupId: "video-23",
           category: "iphone",
           categories: ["iphone"],
           icon: "U",
@@ -1545,6 +1632,7 @@ footer .work-link {
         },
         {
           name: "ORICO USBメモリ CB05",
+          videoGroupId: "video-21",
           category: "iphone",
           categories: ["iphone", "ipad", "mac", "desk"],
           icon: "O",
@@ -1557,6 +1645,7 @@ footer .work-link {
         },
         {
           name: "ORICO 8-in-1電源タップ AP3",
+          videoGroupId: "video-19",
           category: "charger",
           categories: ["charger", "desk"],
           icon: "O",
@@ -1569,6 +1658,7 @@ footer .work-link {
         },
         {
           name: "Wanbo プロジェクター Vali 1 Pro",
+          videoGroupId: "video-17",
           category: "other",
           categories: ["other"],
           icon: "W",
@@ -1581,6 +1671,7 @@ footer .work-link {
         },
         {
           name: "viaim AIイヤホン RecDot",
+          videoGroupId: "video-15",
           category: "earphone",
           categories: ["earphone", "desk"],
           icon: "V",
@@ -1593,6 +1684,7 @@ footer .work-link {
         },
         {
           name: "viaim AIボイスレコーダー NoteKit",
+          videoGroupId: "video-16",
           category: "mac",
           categories: ["mac", "desk"],
           icon: "V",
@@ -1605,6 +1697,7 @@ footer .work-link {
         },
         {
           name: "HUAWEI スマートウォッチ Band 11 Pro",
+          videoGroupId: "video-14",
           category: "other",
           categories: ["other"],
           icon: "H",
@@ -1617,6 +1710,8 @@ footer .work-link {
         },
         {
           name: "CASEKOO iPhoneケース MagicStand Pro シリーズ",
+          videoGroupId: "video-13",
+          videoGroupName: "CASEKOO iPhone17eセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "C",
@@ -1629,6 +1724,8 @@ footer .work-link {
         },
         {
           name: "CASEKOO iPhoneケース Basic Case Shirudoシリーズ",
+          videoGroupId: "video-13",
+          videoGroupName: "CASEKOO iPhone17eセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "C",
@@ -1641,6 +1738,8 @@ footer .work-link {
         },
         {
           name: "Aulumu モバイルバッテリー M10",
+          videoGroupId: "video-12",
+          videoGroupName: "Aulumuセット",
           category: "iphone",
           categories: ["iphone", "applewatch", "powerbank"],
           icon: "A",
@@ -1653,6 +1752,8 @@ footer .work-link {
         },
         {
           name: "Aulumu MagSafeリング G09",
+          videoGroupId: "video-12",
+          videoGroupName: "Aulumuセット",
           category: "iphone",
           categories: ["iphone"],
           icon: "A",
@@ -1665,6 +1766,7 @@ footer .work-link {
         },
         {
           name: "HIRUNEGAO 加重アイマスク NELAX",
+          videoGroupId: "video-11",
           category: "other",
           categories: ["other"],
           icon: "H",
@@ -1677,6 +1779,7 @@ footer .work-link {
         },
         {
           name: "Founist 自撮りモニター Vlogmate Mini",
+          videoGroupId: "video-10",
           category: "iphone",
           categories: ["iphone"],
           icon: "F",
@@ -1689,6 +1792,7 @@ footer .work-link {
         },
         {
           name: "TORRAS 2-in-1急速充電器 FlashEye",
+          videoGroupId: "video-9",
           category: "iphone",
           categories: ["iphone", "ipad", "applewatch", "mac", "charger", "desk"],
           icon: "T",
@@ -1701,6 +1805,8 @@ footer .work-link {
         },
         {
           name: "HUAWEI Wi-Fiルーター WiFi Mesh X3 Pro",
+          videoGroupId: "video-8",
+          videoGroupName: "HUAWEIイベント",
           category: "other",
           categories: ["other"],
           icon: "H",
@@ -1713,6 +1819,8 @@ footer .work-link {
         },
         {
           name: "HUAWEI イヤカフ型イヤホン FreeClip 2",
+          videoGroupId: "video-8",
+          videoGroupName: "HUAWEIイベント",
           category: "earphone",
           categories: ["earphone"],
           icon: "H",
@@ -1725,6 +1833,7 @@ footer .work-link {
         },
         {
           name: "TRUEFREE イヤカフ型イヤホン Clip C10",
+          videoGroupId: "video-6",
           category: "earphone",
           categories: ["earphone"],
           icon: "T",
@@ -1737,6 +1846,7 @@ footer .work-link {
         },
         {
           name: "Wanbo プロジェクター Cube 1",
+          videoGroupId: "video-4",
           category: "other",
           categories: ["other"],
           icon: "W",
@@ -1749,6 +1859,7 @@ footer .work-link {
         },
         {
           name: "cocopar モバイルモニター zs-156x",
+          videoGroupId: "video-2",
           category: "desk",
           categories: ["desk"],
           icon: "C",
@@ -1761,6 +1872,7 @@ footer .work-link {
         },
         {
           name: "SANWA SUPPLY 電源タップ 700-TAP083",
+          videoGroupId: "video-1",
           category: "charger",
           categories: ["charger", "desk"],
           icon: "S",
@@ -1798,6 +1910,112 @@ footer .work-link {
       const recentItems = new Set(
         [...items].sort((a, b) => b.postedAt.localeCompare(a.postedAt)).slice(0, RECENT_COUNT),
       );
+
+      // スプシの動画Noが識別子。同じURLでも動画Noが違えば別のまとめにする。
+      const videoGroups = [...items.reduce((groups, item) => {
+        const id = item.videoGroupId;
+        if (!id) return groups;
+        if (!groups.has(id)) groups.set(id, { id, title: item.videoGroupName || item.name, postedAt: item.postedAt, items: [] });
+        const group = groups.get(id);
+        group.items.push(item);
+        if (item.postedAt > group.postedAt) group.postedAt = item.postedAt;
+        return groups;
+      }, new Map()).values()].sort((a, b) => b.postedAt.localeCompare(a.postedAt));
+      const browseSwitch = document.querySelector("#browseSwitch");
+      const browseHint = document.querySelector("#browseHint");
+      const backToVideos = document.querySelector("#backToVideos");
+      let browseMode = "products";
+      let selectedVideoGroup = null;
+
+      function escapeHTML(value) {
+        return String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+      }
+
+      function youtubeKey(url) {
+        try {
+          const parsed = new URL(url);
+          return parsed.searchParams.get("v") || parsed.pathname.replace(/\/$/, "").split("/").pop();
+        } catch { return url; }
+      }
+
+      function updateBrowseControls() {
+        const videos = browseMode === "videos";
+        browseSwitch.querySelectorAll("button").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.browse === browseMode)));
+        tabs.hidden = videos;
+        browseHint.hidden = !videos;
+        backToVideos.hidden = !videos || !selectedVideoGroup;
+        grid.classList.toggle("video-grid", videos);
+        input.placeholder = videos ? "動画のまとめ・商品名で検索" : "商品名・カテゴリで検索";
+        emptyState.textContent = videos ? "該当するまとめがありません。検索ワードを変えるか、動画の一覧へ戻ってください。" : "該当するアイテムがありません。検索ワードを変えてみてください。";
+      }
+
+      function renderVideoGroups() {
+        const keyword = input.value.trim().toLocaleLowerCase();
+        const groups = videoGroups.filter((group) => (!selectedVideoGroup || group.id === selectedVideoGroup) &&
+          `${group.title} ${postBadge(group)} ${group.items.map((item) => `${item.name} ${item.desc}`).join(" ")}`.toLocaleLowerCase().includes(keyword));
+        title.textContent = selectedVideoGroup ? "このまとめの紹介商品" : "動画から探す";
+        itemCount.textContent = `${groups.length}件のまとめ`;
+        browseHint.textContent = "見た動画のまとめから、気になる商品の購入先へ。新しい紹介順に並んでいます。";
+        emptyState.style.display = groups.length ? "none" : "block";
+        grid.innerHTML = groups.map((group) => {
+          const urls = [...new Map(group.items.filter((item) => item.youtube).map((item) => [youtubeKey(item.youtube), item.youtube])).values()];
+          const sharedVideo = urls.length === 1 && group.items.every((item) => item.youtube);
+          return `<section class="video-group" id="group-${group.id}" aria-labelledby="${group.id}-title">
+            <header class="video-group-head">
+              <div class="video-group-meta"><time datetime="${group.postedAt}">${postBadge(group)}</time><span>紹介商品 ${group.items.length}点</span></div>
+              <h3 class="video-group-title" id="${group.id}-title">${escapeHTML(group.title)}</h3>
+              <div class="video-group-actions">
+                ${sharedVideo ? `<a class="video-watch" href="${escapeHTML(urls[0])}" target="_blank" rel="noopener" aria-label="${escapeHTML(group.title)}の紹介動画をYouTubeで見る"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7Z"/></svg>YouTube</a>` : ""}
+                <button class="video-share" type="button" data-share-group="${group.id}" aria-label="${escapeHTML(group.title)}のまとめリンクをコピー">リンクをコピー</button>
+                <p class="video-share-fallback" hidden>このリンクを長押ししてコピー：<a href="#${group.id}">紹介商品のまとめ</a></p>
+              </div>
+            </header>
+            <div class="video-products">${group.items.map((item) => renderItemCard(item, { inVideoGroup: true, hideVideo: sharedVideo })).join("")}</div>
+          </section>`;
+        }).join("");
+      }
+
+      function applyBrowseRoute({ scroll = false } = {}) {
+        const route = location.hash.slice(1);
+        browseMode = route === "videos" || route.startsWith("video-") ? "videos" : "products";
+        selectedVideoGroup = route.startsWith("video-") ? route : null;
+        input.value = "";
+        renderTabs();
+        renderItems();
+        if (scroll) requestAnimationFrame(() => {
+          const catalog = document.querySelector("#catalog");
+          catalog.style.scrollMarginTop = `${document.querySelector(".search-area").offsetHeight + 16}px`;
+          catalog.scrollIntoView({ block: "start" });
+        });
+      }
+
+      browseSwitch.addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-browse]");
+        if (!button) return;
+        const hash = button.dataset.browse === "videos" ? "#videos" : "#products";
+        if (location.hash !== hash) location.hash = hash;
+        else applyBrowseRoute();
+      });
+      window.addEventListener("hashchange", () => applyBrowseRoute({ scroll: true }));
+
+      grid.addEventListener("click", async (event) => {
+        const button = event.target.closest("button[data-share-group]");
+        if (!button) return;
+        const url = new URL(location.pathname, location.origin);
+        url.hash = button.dataset.shareGroup;
+        const fallback = button.parentElement.querySelector(".video-share-fallback");
+        try {
+          await navigator.clipboard.writeText(url.href);
+          button.textContent = "コピーしました";
+          document.querySelector("#copyStatus").textContent = "このまとめのリンクをコピーしました。";
+          setTimeout(() => { button.textContent = "リンクをコピー"; }, 2000);
+        } catch {
+          fallback.hidden = false;
+          fallback.querySelector("a").href = url.href;
+          document.querySelector("#copyStatus").textContent = "リンクを長押ししてコピーしてください。";
+        }
+      });
+
 
       // 「7/10紹介」のようなバッジ表記を投稿日から自動で作る
       function postBadge(item) {
@@ -1880,16 +2098,20 @@ footer .work-link {
       }
 
       function renderItems() {
+        updateBrowseControls();
+        if (browseMode === "videos") {
+          renderVideoGroups();
+          return;
+        }
         const filteredItems = getFilteredItems();
-        title.textContent =
-          activeCategory === "recent"
-            ? "直近紹介アイテム"
-            : categoryTitles[activeCategory] || `${categoryLabels[activeCategory]}アイテム`;
+        title.textContent = activeCategory === "recent" ? "直近紹介アイテム" : categoryTitles[activeCategory] || `${categoryLabels[activeCategory]}アイテム`;
         itemCount.textContent = `${filteredItems.length}件`;
         emptyState.style.display = filteredItems.length ? "none" : "block";
-        grid.innerHTML = filteredItems
-          .map(
-            (item) => {
+        grid.innerHTML = filteredItems.map((item) => renderItemCard(item)).join("");
+        applyMasonry();
+      }
+
+      function renderItemCard(item, { inVideoGroup = false, hideVideo = false } = {}) {
               const thumbnail = getThumbnailSrc(item);
               const categoryBadges = (item.categories || [item.category])
                 .filter((category) => category !== "coupon" || couponIsActive(item))
@@ -1909,7 +2131,7 @@ footer .work-link {
                     }
                   </div>
                   ${
-                    item.youtube
+                    item.youtube && !hideVideo
                       ? `<a class="yt-btn" href="${item.youtube}" target="_blank" rel="noopener" aria-label="${item.name}の紹介動画をYouTubeで見る"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5v-9l8 4.5-8 4.5Z"/></svg>YouTube</a>`
                       : ""
                   }
@@ -1926,11 +2148,11 @@ footer .work-link {
                   }
                 </div>
                 <div class="item-main">
-                  <div class="item-top">
+                  ${inVideoGroup ? "" : `<div class="item-top">
                     <span class="badge ${item.badgeType || ""}">${postBadge(item)}</span>
                     ${categoryBadges}
-                  </div>
-                  <h3 class="item-name">${item.name}</h3>
+                  </div>`}
+                  <${inVideoGroup ? "h4" : "h3"} class="item-name">${item.name}</${inVideoGroup ? "h4" : "h3"}>
                   <p class="item-desc">${item.desc}</p>
                   ${couponIsActive(item) ? `<p class="coupon-note">${item.coupon}</p>` : ""}
                   ${item.note ? `<p class="coupon-note">${item.note}</p>` : ""}
@@ -1942,13 +2164,10 @@ footer .work-link {
                       )
                       .join("")}
                   </div>
+                  ${!inVideoGroup && videoGroups.find((group) => group.id === item.videoGroupId)?.items.length > 1 ? `<a class="item-group-link" href="#${item.videoGroupId}">紹介商品のまとめを見る →</a>` : ""}
                 </div>
               </article>
             `;
-            },
-          )
-          .join("");
-        applyMasonry();
       }
 
       // カードの高さを内容に合わせる（2列表示のときだけ）。
@@ -1958,7 +2177,7 @@ footer .work-link {
       const twoColumnLayout = window.matchMedia("(min-width: 640px)");
       function applyMasonry() {
         const cards = [...grid.children];
-        if (!twoColumnLayout.matches) {
+        if (browseMode === "videos" || !twoColumnLayout.matches) {
           cards.forEach((card) => {
             card.style.gridRowEnd = "";
           });
@@ -2015,7 +2234,7 @@ footer .work-link {
       });
 
       input.addEventListener("input", () => {
-        if (input.value.trim() && activeCategory !== "all") {
+        if (browseMode === "products" && input.value.trim() && activeCategory !== "all") {
           activeCategory = "all";
           renderTabs();
         }
@@ -2040,8 +2259,7 @@ footer .work-link {
         }, 2000);
       });
 
-      renderTabs();
-      renderItems();
+      applyBrowseRoute({ scroll: location.hash.startsWith("#video") });
 
       const moftCopy = document.querySelector("#moftCopy");
       const moftCopyHint = document.querySelector("#moftCopyHint");

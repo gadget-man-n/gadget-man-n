@@ -166,14 +166,16 @@ img{display:block}
 
 .top{
   position:sticky; top:calc(8px + env(safe-area-inset-top)); z-index:30;
-  display:flex; align-items:center; gap:12px; padding:10px; border-radius:28px;
+  display:flex; align-items:center; gap:14px; padding:14px 12px 14px 14px; border-radius:30px;
   transition:padding .5s var(--spring), border-radius .5s var(--spring);
 }
-.avatar{width:52px; height:52px; border-radius:50%; flex:none; object-fit:cover; background:#fff;
+.avatar{width:62px; height:62px; border-radius:50%; flex:none; object-fit:cover; background:#fff;
   box-shadow:0 0 0 2px var(--rim-hi), 0 6px 16px -6px rgba(20,30,60,.4); transition:width .5s var(--spring), height .5s var(--spring)}
 .top h1{margin:0; min-width:0; font-size:16px; font-weight:800; letter-spacing:-.01em; line-height:1.2; transition:font-size .4s var(--out); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.top h1 em{font-style:normal; display:inline-grid; place-items:center; width:1.25em; height:1.25em; margin:0 .08em; border-radius:.32em; font-size:.82em; vertical-align:.08em;
-  background:var(--fill-3); box-shadow:inset 0 1px 0 var(--rim-hi), inset 0 -1.5px 0 rgba(0,0,0,.08), 0 2px 6px -2px rgba(20,30,60,.35)}
+.top .id{min-width:0}
+.catch{margin:4px 0 0; font-size:12px; font-weight:700; line-height:1.45; opacity:.88; max-height:3em; overflow:hidden;
+  transition:max-height .45s var(--out), opacity .3s, margin .45s var(--out)}
+.top.compact .catch{max-height:0; opacity:0; margin-top:0}
 .follow{margin-left:auto; flex:none; display:grid; place-items:center; width:42px; height:42px; border-radius:50%}
 .follow svg{width:22px; height:22px}
 .top.compact{padding:6px 6px 6px 8px; border-radius:24px}
@@ -404,8 +406,8 @@ img{display:block}
 .skel-in{max-width:980px; margin:0 auto; padding:calc(8px + env(safe-area-inset-top)) 12px 0}
 .sk{position:relative; overflow:hidden; display:block; background:var(--sk); border-radius:10px}
 .skg{position:relative; overflow:hidden; background:linear-gradient(160deg,var(--fill-2),var(--fill)); box-shadow:inset 0 1px 0 var(--rim-hi), inset 0 0 0 .5px var(--edge), var(--drop)}
-.sk-top{display:flex; align-items:center; gap:12px; padding:10px; border-radius:28px}
-.sk-top .av{width:52px; height:52px; border-radius:50%}
+.sk-top{display:flex; align-items:center; gap:14px; padding:14px 12px 14px 14px; border-radius:30px}
+.sk-top .av{width:62px; height:62px; border-radius:50%}
 .sk-top .ln{flex:1; display:grid; gap:7px}
 .sk-pr{width:62%; height:10px; margin:16px 6px 0}
 .sk-h{width:120px; height:22px; margin:24px 4px 12px}
@@ -479,7 +481,6 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
 .top.glass,.sk-top.skg{background:var(--icon-blue); color:#fff;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.5), inset 0 0 0 .5px rgba(255,255,255,.28), 0 18px 38px -14px rgba(18,60,210,.65)}
 .sk-top.skg .sk{background:rgba(255,255,255,.22)}
-.top h1 em{background:#fff; color:var(--navy); box-shadow:0 2px 6px -2px rgba(0,0,0,.4)}
 .top .follow.glass{background:rgba(255,255,255,.2)}
 .avatar{box-shadow:0 0 0 2.5px #fff, 0 6px 16px -6px rgba(0,0,0,.45)}
 .pr b{background:var(--blue); color:#fff}
@@ -493,6 +494,19 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
 .left{background:rgba(255,170,90,.2)}
 .work b{color:var(--blue)}
 
+/* パソコン：カーソルを当てたところがふわっと浮く（スマホでは動かさない） */
+@media (hover:hover) and (pointer:fine){
+  .card,.cc,.vt,.row,.work{transition:translate .6s var(--spring), scale .6s var(--spring), box-shadow .45s var(--out), transform .5s var(--spring)}
+  .card:hover,.cc:hover,.row:hover,.work:hover{translate:0 -7px; scale:1.018;
+    box-shadow:inset 0 1px 0 var(--rim-hi), inset 0 0 0 .5px var(--edge), 0 2px 4px rgba(20,40,120,.06), 0 30px 52px -18px rgba(20,50,170,.45)}
+  .vt:hover{translate:0 -7px; scale:1.018; box-shadow:0 30px 52px -18px rgba(20,50,170,.55)}
+  .card .thumb img{transition:opacity .5s, transform .9s var(--out), scale .7s var(--spring)}
+  .card:hover .thumb img{scale:1.06}
+  .btn,.key,.more,.follow,.social a,.cc-items button,.rel button,.sclose{transition:translate .5s var(--spring), transform .5s var(--spring), box-shadow .4s}
+  .btn:hover,.key:hover,.more:hover,.follow:hover,.social a:hover,.cc-items button:hover,.rel button:hover,.sclose:hover{translate:0 -3px}
+  .chip:hover{color:var(--ink)}
+  .tab:not([aria-selected="true"]):hover{color:var(--ink)}
+}
 </style>
 </head>
 <body>
@@ -500,7 +514,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
 
 <div class="skel" id="skeleton" aria-hidden="true">
   <div class="skel-in">
-    <div class="skg sk-top"><span class="sk av"></span><span class="ln"><span class="sk" style="width:62%;height:15px"></span><span class="sk" style="width:34%;height:10px"></span></span><span class="sk" style="width:42px;height:42px;border-radius:50%"></span></div>
+    <div class="skg sk-top"><span class="sk av"></span><span class="ln"><span class="sk" style="width:62%;height:15px"></span><span class="sk" style="width:80%;height:10px"></span><span class="sk" style="width:45%;height:10px"></span></span><span class="sk" style="width:42px;height:42px;border-radius:50%"></span></div>
     <span class="sk sk-pr"></span>
     <span class="sk sk-h"></span>
     <div class="sk-rail">
@@ -525,7 +539,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
 <div class="app" id="app">
   <header class="top glass" id="top">
     <img class="avatar" src="assets/gaje-icon.png" alt="" width="52" height="52" />
-    <h1>ガジェ<em>⌘</em>ガジェット伝道師</h1>
+    <div class="id"><h1>ガジェ⌘ガジェット伝道師</h1><p class="catch">暮らしがちょっとラクになるガジェットを紹介中</p></div>
     <a class="follow glass press" href="https://www.instagram.com/gadget_man_n/" target="_blank" rel="noopener" aria-label="Instagramをフォロー">
       <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEC053"/><stop offset=".45" stop-color="#F2203E"/><stop offset="1" stop-color="#5258CF"/></linearGradient></defs><rect x="2.5" y="2.5" width="19" height="19" rx="5.6" fill="url(#ig)"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="#fff" stroke-width="1.9"/><circle cx="17.3" cy="6.8" r="1.2" fill="#fff"/></svg>
     </a>

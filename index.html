@@ -1418,6 +1418,23 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
       const ITEMS = items;
 (() => {
 const SITE = "";
+// 商品ボタン・動画ボタンが押された回数を数えるため、押した瞬間に裏でツナグ（ガジェの管理ツール）へ「どのリンクか」だけを知らせる。
+// リンクそのものは元のアフィリエイトリンクのまま、直接お店へ飛ぶ（ツナグは経由しない・リンクも書き換えない）
+const TSUNAGU_COUNT = "https://tsunagu.gadget-man-n.com/c";
+const countClick = (url) => {
+  try {
+    if (!navigator.sendBeacon || !navigator.sendBeacon(TSUNAGU_COUNT, url)) {
+      fetch(TSUNAGU_COUNT, { method: "POST", body: url, mode: "no-cors", keepalive: true }).catch(() => {});
+    }
+  } catch (e) { /* 数えられなくても、リンクはそのまま開く */ }
+};
+const onCountClick = (e) => {
+  if (e.type === "auxclick" && e.button !== 1) return;
+  const a = e.target.closest && e.target.closest("a[data-count]");
+  if (a) countClick(a.dataset.count);
+};
+document.addEventListener("click", onCountClick, true);
+document.addEventListener("auxclick", onCountClick, true);
 const MOFT = {
   key: "moft", maker: "MOFT", logo: SITE + "assets/moft-logo-trim.png", off: "500円", offUnit: "OFF", scope: "公式サイト全商品",
   codes: [{ code: "man2026", label: "" }], expires: "2026-12-31T23:59:59+09:00", url: "https://www.moftjapan.com/",
@@ -1728,9 +1745,9 @@ const canVT = () => !!document.startViewTransition && !reduce;
 function linksHTML(it) {
   const btns = (it.links || []).map((l) => {
     const s = shop(l);
-    return `<a class="btn ${s.k} press" href="${esc(l.url)}" target="_blank" rel="noopener sponsored">${esc(s.t)}${ICON.out}</a>`;
+    return `<a class="btn ${s.k} press" href="${esc(l.url)}" data-count="${esc(l.url)}" target="_blank" rel="noopener sponsored">${esc(s.t)}${ICON.out}</a>`;
   });
-  if (it.youtube) btns.push(`<a class="btn yt press" href="${esc(it.youtube)}" target="_blank" rel="noopener">${ICON.play}紹介動画を見る</a>`);
+  if (it.youtube) btns.push(`<a class="btn yt press" href="${esc(it.youtube)}" data-count="${esc(it.youtube)}" target="_blank" rel="noopener">${ICON.play}紹介動画を見る</a>`);
   return `<div class="buy">${btns.join("")}</div>`;
 }
 
@@ -1754,7 +1771,7 @@ function videoSheet(g) {
     <div class="s-meta"><span>${md(g.date)} 公開</span><span>${g.items.length}点を紹介</span></div>
     <h2 class="s-title">${esc(videoTitle(g))}</h2>
     <div class="rows">${g.items.map((it) => `<button class="row pane press" type="button" data-item="${it.id}"><img src="${src(it.thumbnail)}" alt=""><span class="rtx"><b>${esc(it.title)}</b><small>${esc(it.maker)}${it.priceText ? " · " + esc(it.priceText) : ""}</small></span><span class="chev">${ICON.chev}</span></button>`).join("")}</div>
-    <div class="buy"><a class="btn yt press" href="${esc(g.yt)}" target="_blank" rel="noopener">${ICON.play}YouTubeで開く</a></div>`;
+    <div class="buy"><a class="btn yt press" href="${esc(g.yt)}" data-count="${esc(g.yt)}" target="_blank" rel="noopener">${ICON.play}YouTubeで開く</a></div>`;
 }
 
 function couponSheet(c) {

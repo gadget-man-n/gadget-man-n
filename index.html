@@ -637,16 +637,11 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
           name: "ORICO USBメモリ OB10",
           videoGroupId: "video-48",
           category: "iphone",
-          categories: ["coupon", "iphone", "ipad", "mac"],
+          categories: ["iphone", "ipad", "mac"],
           icon: "O",
           postedAt: "2026-10-20",
-          badgeType: "coupon",
           price: "¥6,480",
           desc: "Type-CとUSB-Aの両方が付いているので、iPhoneで撮った4K動画もアダプターなしでそのままパソコンへ移せて、カバーも本体と一体なのでなくす心配がありません。",
-          coupon: "Amazon割引コード：BV96ISYQ\nコード入力で20%オフ\n有効期限：2026年10月31日 23:59（日本時間）",
-          couponCode: "BV96ISYQ",
-          couponActive: true,
-          couponExpires: "2026-10-31T23:59:59+09:00",
           links: [{ url: "https://amzn.to/4r0qXox" }],
           thumbnail: "thumbnails/ob10.jpg",
           youtube: "https://youtube.com/shorts/ZQLyTxF2CP4?si",
@@ -654,9 +649,6 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         {
           name: "UGREEN 3-in-1充電ステーション MagFlow Pro 3-in-1 マグネット式ワイヤレス充電器 25W（スタンド式）",
           videoGroupId: "video-51",
-          coupon: "Amazon5％オフのクーポンコード：UG261012\n有効期限：2026/10/31まで",
-          couponActive: true,
-          couponExpires: "2026-10-31T23:59:59+09:00",
           category: "charger",
           categories: ["iphone", "applewatch", "earphone", "charger", "desk"],
           icon: "U",
@@ -670,9 +662,6 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         {
           name: "UGREEN モバイルバッテリー Nexode Wavy 10000mAh モバイルバッテリー 45W",
           videoGroupId: "video-50",
-          coupon: "Amazon5％オフのクーポンコード：UG261012\n有効期限：2026/10/31まで",
-          couponActive: true,
-          couponExpires: "2026-10-31T23:59:59+09:00",
           category: "powerbank",
           categories: ["iphone", "mac", "powerbank"],
           icon: "U",
@@ -788,21 +777,6 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
           thumbnail: "thumbnails/nimaso-lens-cover.jpg",
         },
         {
-          name: "BEZALEL 3-in-1巻き取り式充電器 Prelude XS Ⅱ",
-          videoGroupId: "video-43",
-          category: "charger",
-          categories: ["crowdfunding", "iphone", "ipad", "mac", "charger", "desk"],
-          icon: "B",
-          postedAt: "2026-09-11",
-          badgeType: "crowdfunding",
-          crowdfundingActive: true,
-          crowdfundingExpires: "2026-09-30T23:59:59+09:00",
-          desc: "巻き取り式USB-Cケーブルとワイヤレス充電を1台にまとめられ、外出時に持ち歩く充電器やケーブルを減らせます。",
-          links: [{ url: "https://greenfunding.jp/lab/projects/9413" }],
-          thumbnail: "thumbnails/bezalel-prelude-xs-ii.jpg",
-          youtube: "https://youtube.com/shorts/c2Zv-PHjr8k?si",
-        },
-        {
           name: "ESR iPhoneケース Atelier ディープバーガンディー",
           videoGroupId: "video-44",
           videoGroupName: "イベント情報まとめ＋ESRセット",
@@ -875,16 +849,11 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
           name: "ORICO 外付けSSD K20MINI-1TB",
           videoGroupId: "video-41",
           category: "iphone",
-          categories: ["coupon", "iphone", "mac", "desk"],
+          categories: ["iphone", "mac", "desk"],
           icon: "O",
           postedAt: "2026-09-02",
-          badgeType: "coupon",
           price: "¥28,891",
           desc: "iPhoneの背面にマグネットで貼り付けて、4K ProRes動画を撮りながらそのまま保存できる薄型SSD。",
-          coupon: "Amazon割引コード：ORICOK20\nコード入力で5%オフ\n有効期限：2026年9月30日(水) 23:59 JST",
-          couponCode: "ORICOK20",
-          couponActive: true,
-          couponExpires: "2026-09-30T23:59:59+09:00",
           links: [{ url: "https://amzn.to/4cCa8dg" }],
           thumbnail: "thumbnails/k20mini-1tb.jpg",
           youtube: "https://www.youtube.com/shorts/ln5pmD9g7CA",
@@ -1458,9 +1427,8 @@ const ytId = (u) => (String(u || "").match(/(?:shorts\/|v=|youtu\.be\/|embed\/)(
 
 function daysLeft(iso) {
   if (!iso) return null;
-  const e = new Date(iso), n = new Date();
-  const a = new Date(e.getFullYear(), e.getMonth(), e.getDate()), b = new Date(n.getFullYear(), n.getMonth(), n.getDate());
-  return Math.round((a - b) / 864e5);
+  // 日付の区切りは、閲覧する端末のタイムゾーンによらず日本時間。
+  return Math.floor((Date.parse(iso) + 324e5) / 864e5) - Math.floor((Date.now() + 324e5) / 864e5);
 }
 const leftChip = (iso) => {
   const d = daysLeft(iso);
@@ -1516,8 +1484,27 @@ items.filter((i) => i.hasCoupon).forEach((it) => {
   }
   couponMap.get(key).items.push(it);
 });
-const coupons = [MOFT, ...[...couponMap.values()].sort((a, b) => (daysLeft(a.expires) ?? 999) - (daysLeft(b.expires) ?? 999))];
+const coupons = [MOFT, ...[...couponMap.values()].sort((a, b) => (daysLeft(a.expires) ?? 999) - (daysLeft(b.expires) ?? 999))].filter((c) => live(c.expires));
 const couponByKey = Object.fromEntries(coupons.map((c) => [c.key, c]));
+
+// 開いたまま期限を迎えた場合や、スリープから戻った場合も表示を更新する。
+const expiryMoments = [MOFT.expires, ...ITEMS.flatMap((it) => [it.couponExpires, it.crowdfundingExpires])]
+  .filter(Boolean).map(Date.parse).filter(Number.isFinite);
+let expiryObservedAt = Date.now(), expiryTimer;
+function scheduleExpiryRefresh() {
+  clearTimeout(expiryTimer);
+  const now = Date.now(), next = Math.min(...expiryMoments.filter((t) => t > now));
+  if (Number.isFinite(next)) expiryTimer = setTimeout(checkExpiryRefresh, Math.min(next - now + 30, 2147480000));
+}
+function checkExpiryRefresh() {
+  const now = Date.now();
+  if (expiryMoments.some((t) => t > expiryObservedAt && t <= now)) { location.reload(); return; }
+  expiryObservedAt = now;
+  scheduleExpiryRefresh();
+}
+document.addEventListener("visibilitychange", () => { if (!document.hidden) checkExpiryRefresh(); });
+window.addEventListener("pageshow", checkExpiryRefresh);
+scheduleExpiryRefresh();
 
 const videos = [...items.reduce((m, it) => {
   const k = it.videoGroupId || it.id;

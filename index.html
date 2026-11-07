@@ -310,7 +310,7 @@ img{display:block}
 .social{display:flex; gap:10px}
 .social a{width:48px; height:48px; border-radius:50%; display:grid; place-items:center}
 .social svg{width:22px; height:22px; fill:currentColor}
-.fine{margin:4px 0 0; font-size:11px; line-height:1.8; color:var(--ink-3)}
+.fine{margin:4px 0 0; font-size:12px; line-height:1.8; color:var(--ink-2)}
 
 /* ---------- 下のドック（タブ＋検索） ---------- */
 .dock{position:fixed; z-index:50; left:50%; bottom:calc(10px + env(safe-area-inset-bottom)); width:min(440px,calc(100% - 20px)); display:flex; gap:8px;
@@ -374,6 +374,14 @@ img{display:block}
 .btn.rakuten{background:linear-gradient(180deg,rgba(214,22,22,.94),rgba(191,0,0,.92)); color:#fff}
 .btn.web{background:var(--fill-3); color:var(--ink)}
 .btn.yt{background:rgba(255,59,48,.12); color:var(--hot); box-shadow:inset 0 0 0 1px rgba(255,59,48,.25)}
+.s-share{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:8px; margin:16px 0 0}
+.s-share button{display:flex; align-items:center; justify-content:center; gap:7px; min-height:44px; padding:8px; border:1px solid var(--edge); border-radius:19px; background:var(--fill-3); color:var(--ink); font-size:13px; font-weight:700; white-space:nowrap}
+.s-share svg{width:18px; height:18px; flex:none}
+.s-share button:disabled{opacity:.6; cursor:wait}
+.s-ad{margin:12px 0 0; color:var(--ink-2); font-size:12px; line-height:1.7; overflow-wrap:anywhere}
+.s-share-manual{margin-top:10px}
+.s-share-manual label{display:block; font-size:13px; font-weight:700; margin-bottom:6px}
+.s-share-manual input{width:100%; min-height:44px; padding:10px; border:1px solid var(--edge); border-radius:12px; background:var(--fill-3); color:var(--ink); font-size:16px}
 .s-sub{margin:22px 0 8px; font-size:13px; font-weight:800; color:var(--ink-2)}
 .rel{display:flex; gap:10px; overflow-x:auto; scrollbar-width:none; padding:2px; margin:0 -2px}
 .rel button{flex:none; width:92px; border:0; background:none; padding:0; text-align:left; display:grid; gap:6px}
@@ -399,6 +407,7 @@ img{display:block}
 .toast{position:fixed; z-index:90; left:50%; top:calc(14px + env(safe-area-inset-top)); display:flex; align-items:center; gap:8px; padding:11px 18px 11px 12px; border-radius:99px;
   font-size:13.5px; font-weight:800; white-space:nowrap; transform:translate(-50%,-140%) scale(.8); opacity:0; transition:transform .6s var(--spring), opacity .3s; pointer-events:none}
 .toast.show{transform:translate(-50%,0) scale(1); opacity:1}
+.toast.notice{width:max-content; max-width:calc(100vw - 24px); white-space:normal; text-align:center; border-radius:19px}
 .toast i{width:24px; height:24px; border-radius:50%; background:var(--green); display:grid; place-items:center; color:#fff}
 .toast i svg{width:14px; height:14px}
 .toast code{font-family:var(--mono); font-weight:800}
@@ -577,7 +586,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
       <a class="glass press" href="https://www.tiktok.com/@gadget_man_n" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M15.4 3c.4 2.6 1.9 4.2 4.4 4.4v3.1a7.3 7.3 0 0 1-4.3-1.4v6.2c0 3.2-2.2 5.7-5.5 5.7a5.4 5.4 0 0 1-5.6-5.3c0-3 2.4-5.3 5.4-5.3.4 0 .8 0 1.1.1v3.3a2.7 2.7 0 0 0-1.1-.2 2.1 2.1 0 1 0 2.1 2.1V3h3.5Z"/></svg></a>
       <a class="glass press" href="https://x.com/gadget_man_n" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M14.3 10.3 21.6 2h-1.7l-6.4 7.2L8.5 2H2.7l7.7 11L2.7 22h1.7l6.8-7.8 5.4 7.8h5.8l-8.1-11.7Zm-2.4 2.8-.8-1.1-6.2-8.7h2.8l5 7.1.8 1.1 6.5 9.2h-2.8l-5.3-7.6Z"/></svg></a>
     </div>
-    <p class="fine">本ページのリンクにはアフィリエイト広告を含みます。<br />© ガジェ⌘ガジェット伝道師</p>
+    <p class="fine">本ページのリンクにはアフィリエイト広告を含みます。<br />Amazonのアソシエイトとして、ガジェ⌘ガジェット伝道師(@gadget_man_n)は適格販売により収入を得ています。<br />© ガジェ⌘ガジェット伝道師(@gadget_man_n)</p>
   </footer>
 </div>
 
@@ -614,9 +623,11 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
 
 <script>
       // ===== 商品データ（スプシ「動画制作関連」が正本。書き方はAGENTS.mdのとおり） =====
+      // shareId は公開済みの商品URLです。商品名・画像・並び順を変えても変更しないでください。
       const items = [
         {
           name: "yubico セキュリティーキー YubiKey 5C NFC",
+          shareId: "yubikey-5c-nfc",
           videoGroupId: "video-53",
           category: "iphone",
           categories: ["iphone", "ipad", "mac", "other"],
@@ -630,6 +641,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Wanbo プロジェクター Vali 1 Mini",
+          shareId: "vali-1-mini",
           videoGroupId: "video-52",
           category: "other",
           categories: ["coupon", "other"],
@@ -648,6 +660,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ORICO USBメモリ OB10",
+          shareId: "ob10",
           videoGroupId: "video-48",
           category: "iphone",
           categories: ["iphone", "ipad", "mac"],
@@ -661,6 +674,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "UGREEN 3-in-1充電ステーション MagFlow Pro 3-in-1 マグネット式ワイヤレス充電器 25W（スタンド式）",
+          shareId: "ugreen-magflow-pro",
           videoGroupId: "video-51",
           category: "charger",
           categories: ["iphone", "applewatch", "earphone", "charger", "desk"],
@@ -674,6 +688,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "UGREEN モバイルバッテリー Nexode Wavy 10000mAh モバイルバッテリー 45W",
+          shareId: "ugreen-nexode-wavy",
           videoGroupId: "video-50",
           category: "powerbank",
           categories: ["iphone", "mac", "powerbank"],
@@ -687,6 +702,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ESR MagSafe充電器 Cyclone 25W マグネット充電パッド(CryoBoost搭載)",
+          shareId: "esr-cyclone-25w",
           videoGroupId: "video-46",
           videoGroupName: "ESR充電アクセ特集",
           category: "charger",
@@ -701,6 +717,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ESR 巻き取り式充電器 Xtend 45W 巻き取り式充電器",
+          shareId: "esr-xtend-45w",
           videoGroupId: "video-46",
           videoGroupName: "ESR充電アクセ特集",
           category: "charger",
@@ -715,6 +732,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ESR 折りたたみ式3-in-1充電ステーション CryoBoost 折りたたみ式3-in-1 マグネット充電ステーション(25W)",
+          shareId: "esr-cryoboost-3in1",
           videoGroupId: "video-46",
           videoGroupName: "ESR充電アクセ特集",
           category: "charger",
@@ -729,6 +747,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ESR 巻き取り式車載充電器 Xtend 100W 巻き取り式車載充電器(ケーブル2本付き)",
+          shareId: "esr-xtend-100w-car",
           videoGroupId: "video-46",
           videoGroupName: "ESR充電アクセ特集",
           category: "charger",
@@ -743,6 +762,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "NIMASO iPhoneケース iPhone 18 Pro/17 Pro用クリアケース",
+          shareId: "nimaso-clear-case",
           videoGroupId: "video-49",
           videoGroupName: "NIMASO iPhone 18 Proセット",
           category: "iphone",
@@ -756,6 +776,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "NIMASO ガラスフィルム 自動除塵 NIMASO ガラスフィルム",
+          shareId: "nimaso-glass-film",
           videoGroupId: "video-49",
           videoGroupName: "NIMASO iPhone 18 Proセット",
           category: "iphone",
@@ -769,6 +790,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "NIMASO カメラレンズカバー アルミ合金製レンズカバー",
+          shareId: "nimaso-lens-cover",
           videoGroupId: "video-49",
           videoGroupName: "NIMASO iPhone 18 Proセット",
           category: "iphone",
@@ -782,6 +804,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ESR iPhoneケース Atelier ディープバーガンディー",
+          shareId: "esr-atelier",
           videoGroupId: "video-44",
           videoGroupName: "イベント情報まとめ＋ESRセット",
           category: "iphone",
@@ -796,6 +819,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ESR ガラスフィルム UltraFit Armorite® Proスクリーン保護フィルム",
+          shareId: "esr-ultrafit",
           videoGroupId: "video-44",
           videoGroupName: "イベント情報まとめ＋ESRセット",
           category: "iphone",
@@ -810,6 +834,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ESR MagSafeスタンド Find My対応カードケース ワインレッド",
+          shareId: "esr-card-findmy-burgundy",
           videoGroupId: "video-44",
           videoGroupName: "イベント情報まとめ＋ESRセット",
           category: "iphone",
@@ -824,6 +849,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ESR MagSafeスタンド カードケース ライトブルー",
+          shareId: "esr-card-blue",
           videoGroupId: "video-44",
           videoGroupName: "イベント情報まとめ＋ESRセット",
           category: "iphone",
@@ -838,6 +864,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Ewin キーボード EW-NKB303",
+          shareId: "ewin-ew-nkb303",
           videoGroupId: "video-42",
           category: "desk",
           categories: ["iphone", "ipad", "mac", "desk"],
@@ -851,6 +878,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ORICO 外付けSSD K20MINI-1TB",
+          shareId: "k20mini-1tb",
           videoGroupId: "video-41",
           category: "iphone",
           categories: ["iphone", "mac", "desk"],
@@ -864,6 +892,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "RANVOO 電動歯ブラシ AirJet X5",
+          shareId: "ranvoo-airjet-x5",
           videoGroupId: "video-40",
           category: "other",
           categories: ["coupon", "other"],
@@ -888,6 +917,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Geometrical カード型三脚 Pocket Tripod PROv2",
+          shareId: "pocket-tripod-prov2",
           videoGroupId: "video-39",
           category: "iphone",
           categories: ["iphone"],
@@ -901,6 +931,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "TORRAS ガラスフィルム iPhone 16 Pro 用",
+          shareId: "torras-glass-film-iphone16pro",
           videoGroupId: "video-37",
           videoGroupName: "TORRASセット",
           category: "iphone",
@@ -915,6 +946,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "TORRAS iPhoneケース Ostand Q3 Air",
+          shareId: "torras-ostand-q3-air",
           videoGroupId: "video-37",
           videoGroupName: "TORRASセット",
           category: "iphone",
@@ -929,6 +961,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "TORRAS カメラレンズカバー iPhone 16 Pro 用",
+          shareId: "torras-camera-lens-cover-iphone16pro",
           videoGroupId: "video-37",
           videoGroupName: "TORRASセット",
           category: "iphone",
@@ -943,6 +976,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ORICO ドッキングステーション DKA20",
+          shareId: "dka20",
           videoGroupId: "video-36",
           category: "desk",
           categories: ["mac", "charger", "desk"],
@@ -956,6 +990,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ORICO カードリーダー AIR5C",
+          shareId: "air5c",
           videoGroupId: "video-35",
           category: "iphone",
           categories: ["iphone", "ipad", "mac", "charger", "desk"],
@@ -969,6 +1004,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "InnAIO AI同時通訳 音声翻訳機 T10",
+          shareId: "innaio-t10",
           videoGroupId: "video-34",
           category: "other",
           categories: ["other"],
@@ -985,6 +1021,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "K&F CONCEPT MagSafeライト JPKF34.053",
+          shareId: "jpkf34-053",
           videoGroupId: "video-33",
           videoGroupName: "K&Fセット",
           category: "iphone",
@@ -999,6 +1036,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "K&F CONCEPT 自撮り棒 三脚 KF15.0015",
+          shareId: "kf15-0015",
           videoGroupId: "video-33",
           videoGroupName: "K&Fセット",
           category: "iphone",
@@ -1013,6 +1051,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Wanbo プロジェクター T2 Ultra-GTV",
+          shareId: "t2-ultra-gtv",
           videoGroupId: "video-32",
           category: "other",
           categories: ["other"],
@@ -1026,6 +1065,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Timekettle AI通話 翻訳機能付きイヤホン W4 Pro",
+          shareId: "w4-pro",
           videoGroupId: "video-30",
           category: "earphone",
           categories: ["coupon", "earphone"],
@@ -1043,6 +1083,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Wanbo プロジェクター ToGo Pro",
+          shareId: "togo-pro",
           videoGroupId: "video-29",
           category: "other",
           categories: ["other"],
@@ -1056,6 +1097,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Ulanzi MagSafeライト LM23",
+          shareId: "lm23",
           videoGroupId: "video-28",
           category: "iphone",
           categories: ["iphone"],
@@ -1070,6 +1112,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ORICO エンクロージャー AP80F",
+          shareId: "ap80f",
           videoGroupId: "video-27",
           category: "iphone",
           categories: ["iphone", "desk"],
@@ -1083,6 +1126,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "AULA キーボード Hero68J-BK-BO",
+          shareId: "hero68j-bk-bo",
           videoGroupId: "video-26",
           category: "desk",
           categories: ["mac", "desk"],
@@ -1096,6 +1140,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "AULA キーボード F99J-SI-BG",
+          shareId: "f99j-si-bg",
           videoGroupId: "video-25",
           category: "desk",
           categories: ["mac", "desk"],
@@ -1109,6 +1154,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "SOUNDPEATS イヤカフ型イヤホン UU2",
+          shareId: "uu2-earcuff-earbuds",
           videoGroupId: "video-24",
           category: "earphone",
           categories: ["earphone"],
@@ -1122,6 +1168,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "UMEVO AIボイスレコーダー Note Plus",
+          shareId: "umevo-note-plus",
           videoGroupId: "video-23",
           category: "iphone",
           categories: ["iphone"],
@@ -1135,6 +1182,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ORICO USBメモリ CB05",
+          shareId: "cb05",
           videoGroupId: "video-21",
           category: "iphone",
           categories: ["iphone", "ipad", "mac", "desk"],
@@ -1148,6 +1196,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "ORICO 8-in-1電源タップ AP3",
+          shareId: "ap3-3a2u2c-65-jp",
           videoGroupId: "video-19",
           category: "charger",
           categories: ["charger", "desk"],
@@ -1161,6 +1210,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Wanbo プロジェクター Vali 1 Pro",
+          shareId: "vali-1-pro",
           videoGroupId: "video-17",
           category: "other",
           categories: ["other"],
@@ -1174,6 +1224,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "viaim AIイヤホン RecDot",
+          shareId: "recdot",
           videoGroupId: "video-15",
           category: "earphone",
           categories: ["earphone", "desk"],
@@ -1187,6 +1238,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "viaim AIボイスレコーダー NoteKit",
+          shareId: "notekit",
           videoGroupId: "video-16",
           category: "mac",
           categories: ["mac", "desk"],
@@ -1200,6 +1252,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "HUAWEI スマートウォッチ Band 11 Pro",
+          shareId: "band-11-pro",
           videoGroupId: "video-14",
           category: "other",
           categories: ["other"],
@@ -1213,6 +1266,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "CASEKOO iPhoneケース MagicStand Pro シリーズ",
+          shareId: "magicstand-pro-series",
           videoGroupId: "video-13",
           videoGroupName: "CASEKOO iPhone17eセット",
           category: "iphone",
@@ -1227,6 +1281,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "CASEKOO iPhoneケース Basic Case Shirudoシリーズ",
+          shareId: "basic-case-shirudo-series",
           videoGroupId: "video-13",
           videoGroupName: "CASEKOO iPhone17eセット",
           category: "iphone",
@@ -1241,6 +1296,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Aulumu モバイルバッテリー M10",
+          shareId: "m10",
           videoGroupId: "video-12",
           videoGroupName: "Aulumuセット",
           category: "iphone",
@@ -1255,6 +1311,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Aulumu MagSafeリング G09",
+          shareId: "g09",
           videoGroupId: "video-12",
           videoGroupName: "Aulumuセット",
           category: "iphone",
@@ -1269,6 +1326,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "HIRUNEGAO 加重アイマスク NELAX",
+          shareId: "nelax-power-nap-for-dream",
           videoGroupId: "video-11",
           category: "other",
           categories: ["other"],
@@ -1282,6 +1340,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Founist 自撮りモニター Vlogmate Mini",
+          shareId: "vlogmate-mini",
           videoGroupId: "video-10",
           category: "iphone",
           categories: ["iphone"],
@@ -1295,6 +1354,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "TORRAS 2-in-1急速充電器 FlashEye",
+          shareId: "flasheye-all-in-one-charger",
           videoGroupId: "video-9",
           category: "iphone",
           categories: ["iphone", "ipad", "applewatch", "mac", "charger", "desk"],
@@ -1308,6 +1368,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "HUAWEI Wi-Fiルーター WiFi Mesh X3 Pro",
+          shareId: "wifi-mesh-x3-pro",
           videoGroupId: "video-8",
           videoGroupName: "HUAWEIイベント",
           category: "other",
@@ -1322,6 +1383,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "HUAWEI イヤカフ型イヤホン FreeClip 2",
+          shareId: "freeclip-2",
           videoGroupId: "video-8",
           videoGroupName: "HUAWEIイベント",
           category: "earphone",
@@ -1336,6 +1398,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "TRUEFREE イヤカフ型イヤホン Clip C10",
+          shareId: "clip-c10",
           videoGroupId: "video-6",
           category: "earphone",
           categories: ["earphone"],
@@ -1349,6 +1412,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "Wanbo プロジェクター Cube 1",
+          shareId: "cube-1",
           videoGroupId: "video-4",
           category: "other",
           categories: ["other"],
@@ -1362,6 +1426,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "cocopar モバイルモニター zs-156x",
+          shareId: "zs-156x",
           videoGroupId: "video-2",
           category: "desk",
           categories: ["desk"],
@@ -1375,6 +1440,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
         },
         {
           name: "SANWA SUPPLY 電源タップ 700-TAP083",
+          shareId: "700-tap083",
           videoGroupId: "video-1",
           category: "charger",
           categories: ["charger", "desk"],
@@ -1451,6 +1517,8 @@ const items = ITEMS.map((it, i) => {
   const sp = it.name.indexOf(" ");
   return {
     ...it, id: "i" + i,
+    // 新しい商品も共有可能。短い固定IDを付ける場合は初回掲載時にshareIdを指定する。
+    shareId: it.shareId || it.name,
     maker: sp > 0 ? it.name.slice(0, sp) : it.name,
     title: sp > 0 ? it.name.slice(sp + 1) : it.name,
     cats: it.categories || [it.category],
@@ -1460,6 +1528,11 @@ const items = ITEMS.map((it, i) => {
   };
 }).sort((a, b) => b.postedAt.localeCompare(a.postedAt));
 const byId = Object.fromEntries(items.map((i) => [i.id, i]));
+const byShareId = new Map();
+items.forEach((it) => {
+  if (byShareId.has(it.shareId)) throw new Error("商品URLのshareIdが重複しています: " + it.shareId);
+  byShareId.set(it.shareId, it);
+});
 if (!items.some((i) => i.hasCf)) CATS.splice(CATS.findIndex((c) => c.id === "crowdfunding"), 1);
 
 function codesOf(it) {
@@ -1525,6 +1598,7 @@ const videoTitle = (g) => g.name || (g.items.length > 1 ? `${g.items[0].maker} �
 /* ---------- 描画 ---------- */
 const ICON = {
   copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><rect x="8.5" y="8.5" width="12" height="12" rx="3"/><path d="M15.5 8.5V6a2.5 2.5 0 0 0-2.5-2.5H6A2.5 2.5 0 0 0 3.5 6v7A2.5 2.5 0 0 0 6 15.5h2.5"/></svg>',
+  share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3m-4 4 4-4 4 4M6 11H4v10h16V11h-2"/></svg>',
   check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
   play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>',
   out: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>',
@@ -1730,7 +1804,50 @@ $("#searchClose").addEventListener("click", closeSearch);
 
 /* ---------- シート ---------- */
 const sheet = $("#sheet"), scrim = $("#scrim"), sbody = $("#sbody");
-let fromThumb = null, lastFocus = null;
+let fromThumb = null, lastFocus = null, sheetCloseT, sheetSwapT;
+let activeItem = null;
+const pageTitle = document.title;
+const routeSession = "item-" + Date.now().toString(36);
+
+function itemURL(it) {
+  const url = new URL(location.pathname, location.origin);
+  url.searchParams.set("item", it.shareId);
+  return url.href;
+}
+
+function openItem(it, thumbEl, updateURL = true) {
+  if (!it) return;
+  if (updateURL) {
+    const url = new URL(location.href);
+    const method = url.searchParams.has("item") ? "replaceState" : "pushState";
+    url.searchParams.set("item", it.shareId);
+    const nextState = method === "pushState" ? { ...history.state, gadgetItemSheet: routeSession } : history.state;
+    history[method](nextState, "", url);
+  }
+  activeItem = it;
+  document.title = it.name + " | ガジェ⌘ガジェット伝道師(@gadget_man_n)";
+  openSheet(itemSheet(it), thumbEl);
+}
+
+function clearItemURL() {
+  const url = new URL(location.href);
+  if (!url.searchParams.has("item")) return;
+  url.searchParams.delete("item");
+  const nextState = { ...history.state };
+  delete nextState.gadgetItemSheet;
+  history.replaceState(nextState, "", url);
+}
+
+function syncItemURL() {
+  const key = new URL(location.href).searchParams.get("item");
+  const it = byShareId.get(key);
+  if (it) return openItem(it, null, false);
+  activeItem = null;
+  document.title = pageTitle;
+  closeSheet(false);
+  if (key !== null) showNotice("この商品は現在掲載されていません。アイテム一覧をご覧ください。");
+}
+addEventListener("popstate", syncItemURL);
 const canVT = () => !!document.startViewTransition && !reduce;
 
 function linksHTML(it) {
@@ -1751,7 +1868,14 @@ function itemSheet(it) {
     <h2 class="s-title">${esc(it.title)}</h2>
     ${it.desc ? `<p class="s-desc">${esc(it.desc)}</p>` : ""}
     ${c ? `<div class="s-coupon"><div class="s-coupon-head">クーポン ${esc(c.off)}${esc(c.offUnit)}${leftChip(c.expires)}</div><div class="keys">${c.codes.map((k) => keyHTML(k, c.codes.length > 1)).join("")}</div><p class="cc-text">${esc(it.coupon)}</p></div>` : ""}
+    <p class="s-ad">この商品の購入リンクにはアフィリエイト広告を含みます。</p>
     ${linksHTML(it)}
+    <div class="s-share" aria-label="この商品を共有">
+      <button type="button" class="press" data-item-copy="${it.id}">${ICON.copy}<span>リンクをコピー</span></button>
+      <button type="button" class="press" data-item-share="${it.id}">${ICON.share}<span>共有</span></button>
+    </div>
+    <div class="s-share-manual" hidden><label for="itemShareURL">このリンクをコピーして共有できます</label><input id="itemShareURL" type="url" readonly value="${esc(itemURL(it))}"></div>
+    ${(it.links || []).some((l) => shop(l).k === "amazon") ? `<p class="s-ad">Amazonのアソシエイトとして、ガジェ⌘ガジェット伝道師(@gadget_man_n)は適格販売により収入を得ています。</p>` : ""}
     ${sib.length ? `<p class="s-sub">同じ動画で紹介</p><div class="rel">${sib.map((s) => `<button type="button" class="press" data-item="${s.id}"><span class="rt">${s.thumbnail ? `<img src="${src(s.thumbnail)}" alt="">` : ""}</span><span>${esc(s.title)}</span></button>`).join("")}</div>` : ""}`;
 }
 
@@ -1783,7 +1907,12 @@ function couponSheet(c) {
 }
 
 function openSheet(html, thumbEl) {
-  if (!sheet.hidden) { swapSheet(html); return; }
+  clearTimeout(sheetCloseT);
+  clearTimeout(sheetSwapT);
+  if (!sheet.hidden) {
+    sheet.classList.add("open"); scrim.classList.add("open");
+    swapSheet(html); return;
+  }
   lastFocus = document.activeElement;
   const show = () => {
     sbody.innerHTML = html;
@@ -1817,10 +1946,18 @@ function swapSheet(html) {
   fromThumb = null;
   sbody.classList.add("swap");
   sheet.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
-  setTimeout(() => { sbody.innerHTML = html; sbody.classList.remove("swap"); }, reduce ? 0 : 170);
+  sheetSwapT = setTimeout(() => { sbody.innerHTML = html; sbody.classList.remove("swap"); }, reduce ? 0 : 170);
 }
 
-function closeSheet() {
+function closeSheet(updateURL = true) {
+  if (updateURL && activeItem) {
+    if (history.state?.gadgetItemSheet === routeSession) { history.back(); return; }
+    clearItemURL();
+  }
+  activeItem = null;
+  document.title = pageTitle;
+  clearTimeout(sheetSwapT);
+  sbody.classList.remove("swap");
   if (sheet.hidden) return;
   const finish = () => {
     sheet.hidden = true; scrim.hidden = true;
@@ -1841,12 +1978,12 @@ function closeSheet() {
     sheet.classList.remove("dragging");
     sheet.style.transform = "";
     sheet.classList.remove("open"); scrim.classList.remove("open");
-    setTimeout(finish, reduce ? 0 : 420);
+    sheetCloseT = setTimeout(finish, reduce ? 0 : 420);
   }
   fromThumb = null;
   lastFocus?.focus?.({ preventScroll: true });
 }
-scrim.addEventListener("click", closeSheet);
+scrim.addEventListener("click", () => closeSheet());
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && !sheet.hidden) closeSheet();
   if (e.key === "Enter" && e.target.matches("[data-coupon]")) e.target.click();
@@ -1879,6 +2016,7 @@ document.addEventListener("keydown", (e) => {
 const toast = $("#toast");
 let toastT;
 function showToast(code) {
+  toast.classList.remove("notice");
   toast.innerHTML = `<i>${ICON.check}</i>コピーしました <code>${esc(code)}</code>`;
   toast.classList.add("show");
   clearTimeout(toastT);
@@ -1901,17 +2039,64 @@ async function copy(code, btn) {
   showToast(code);
 }
 
+/* ---------- 商品紹介ページの共有（購入先へ自動転送しない） ---------- */
+function showNotice(message) {
+  toast.textContent = message;
+  toast.classList.add("show", "notice");
+  clearTimeout(toastT);
+  toastT = setTimeout(() => toast.classList.remove("show"), 4000);
+}
+
+async function copyItemURL(it) {
+  const url = itemURL(it);
+  try {
+    await navigator.clipboard.writeText(url);
+  } catch {
+    const ta = Object.assign(document.createElement("textarea"), { value: url });
+    ta.style.cssText = "position:fixed;opacity:0";
+    sheet.append(ta);
+    ta.select();
+    let copied = false;
+    try { copied = document.execCommand("copy"); } catch { /* 手動コピーを表示 */ }
+    ta.remove();
+    if (!copied) {
+      const field = $(".s-share-manual", sheet);
+      field.hidden = false;
+      const input = $("input", field);
+      input.focus(); input.select();
+      showNotice("リンクを選択してコピーしてください");
+      return;
+    }
+  }
+  showNotice("この商品のリンクをコピーしました");
+}
+
+async function shareItem(it, button) {
+  if (!navigator.share) return copyItemURL(it);
+  button.disabled = true;
+  try {
+    await navigator.share({ title: it.name, url: itemURL(it) });
+  } catch (error) {
+    // 共有を取り消した場合は、勝手にクリップボードを書き換えない。
+    if (error.name !== "AbortError") await copyItemURL(it);
+  } finally { button.disabled = false; }
+}
+
 /* ---------- タップの振り分け ---------- */
 document.addEventListener("click", (e) => {
-  const el = e.target.closest("[data-copy],[data-item],[data-video],[data-coupon],[data-view],[data-cat],[data-close],[data-play]");
+  const el = e.target.closest("[data-copy],[data-item-copy],[data-item-share],[data-item],[data-video],[data-coupon],[data-view],[data-cat],[data-close],[data-play]");
   if (!el) return;
   const d = el.dataset;
+  if (d.itemCopy) return copyItemURL(byId[d.itemCopy]);
+  if (d.itemShare) return shareItem(byId[d.itemShare], el);
   if (d.copy) return copy(d.copy, el);
   if (d.close !== undefined) return closeSheet();
   if (d.play) { $("#player").innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${d.play}?autoplay=1&playsinline=1&rel=0" title="紹介動画" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`; return; }
-  if (d.item) { const it = byId[d.item]; return openSheet(itemSheet(it), sheet.hidden ? $(".thumb", el) : null); }
-  if (d.video) return openSheet(videoSheet(videoById[d.video]));
-  if (d.coupon) return openSheet(couponSheet(couponByKey[d.coupon]));
+  if (d.item) return openItem(byId[d.item], sheet.hidden ? $(".thumb", el) : null);
+  if (d.video || d.coupon) {
+    clearItemURL(); activeItem = null; document.title = pageTitle;
+    return openSheet(d.video ? videoSheet(videoById[d.video]) : couponSheet(couponByKey[d.coupon]));
+  }
   if (d.view) { if (dock.classList.contains("searching")) closeSearch(); return setView(d.view); }
   if (d.cat) return setCat(d.cat);
 });
@@ -1972,6 +2157,7 @@ Promise.race([
     document.body.classList.add("ready");
     placeLenses(true);
     observe(document);
+    syncItemURL();
     setTimeout(() => $("#skeleton").remove(), 800);
   }, Math.max(0, 800 - (performance.now() - t0)));
 });

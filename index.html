@@ -586,7 +586,7 @@ body.ready .dock{animation:dock-in 1s var(--spring) .3s backwards}
       <a class="glass press" href="https://www.tiktok.com/@gadget_man_n" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M15.4 3c.4 2.6 1.9 4.2 4.4 4.4v3.1a7.3 7.3 0 0 1-4.3-1.4v6.2c0 3.2-2.2 5.7-5.5 5.7a5.4 5.4 0 0 1-5.6-5.3c0-3 2.4-5.3 5.4-5.3.4 0 .8 0 1.1.1v3.3a2.7 2.7 0 0 0-1.1-.2 2.1 2.1 0 1 0 2.1 2.1V3h3.5Z"/></svg></a>
       <a class="glass press" href="https://x.com/gadget_man_n" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M14.3 10.3 21.6 2h-1.7l-6.4 7.2L8.5 2H2.7l7.7 11L2.7 22h1.7l6.8-7.8 5.4 7.8h5.8l-8.1-11.7Zm-2.4 2.8-.8-1.1-6.2-8.7h2.8l5 7.1.8 1.1 6.5 9.2h-2.8l-5.3-7.6Z"/></svg></a>
     </div>
-    <p class="fine">本ページのリンクにはアフィリエイト広告を含みます。<br />Amazonのアソシエイトとして、ガジェ⌘ガジェット伝道師(@gadget_man_n)は適格販売により収入を得ています。<br />© ガジェ⌘ガジェット伝道師(@gadget_man_n)</p>
+    <p class="fine">本ページにはプロモーションが含まれます。<br />© ガジェ⌘ガジェット伝道師(@gadget_man_n)</p>
   </footer>
 </div>
 
@@ -1868,14 +1868,13 @@ function itemSheet(it) {
     <h2 class="s-title">${esc(it.title)}</h2>
     ${it.desc ? `<p class="s-desc">${esc(it.desc)}</p>` : ""}
     ${c ? `<div class="s-coupon"><div class="s-coupon-head">クーポン ${esc(c.off)}${esc(c.offUnit)}${leftChip(c.expires)}</div><div class="keys">${c.codes.map((k) => keyHTML(k, c.codes.length > 1)).join("")}</div><p class="cc-text">${esc(it.coupon)}</p></div>` : ""}
-    <p class="s-ad">この商品の購入リンクにはアフィリエイト広告を含みます。</p>
+    <p class="s-ad">この商品紹介にはプロモーションが含まれます。</p>
     ${linksHTML(it)}
     <div class="s-share" aria-label="この商品を共有">
       <button type="button" class="press" data-item-copy="${it.id}">${ICON.copy}<span>リンクをコピー</span></button>
       <button type="button" class="press" data-item-share="${it.id}">${ICON.share}<span>共有</span></button>
     </div>
     <div class="s-share-manual" hidden><label for="itemShareURL">このリンクをコピーして共有できます</label><input id="itemShareURL" type="url" readonly value="${esc(itemURL(it))}"></div>
-    ${(it.links || []).some((l) => shop(l).k === "amazon") ? `<p class="s-ad">Amazonのアソシエイトとして、ガジェ⌘ガジェット伝道師(@gadget_man_n)は適格販売により収入を得ています。</p>` : ""}
     ${sib.length ? `<p class="s-sub">同じ動画で紹介</p><div class="rel">${sib.map((s) => `<button type="button" class="press" data-item="${s.id}"><span class="rt">${s.thumbnail ? `<img src="${src(s.thumbnail)}" alt="">` : ""}</span><span>${esc(s.title)}</span></button>`).join("")}</div>` : ""}`;
 }
 

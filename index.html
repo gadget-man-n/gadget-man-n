@@ -1859,6 +1859,14 @@ function linksHTML(it) {
   return `<div class="buy">${btns.join("")}</div>`;
 }
 
+function affiliateDisclosureHTML(it) {
+  const shops = new Set((it.links || []).map((link) => shop(link).k));
+  const notes = [];
+  if (shops.has("amazon")) notes.push("Amazonのアソシエイトとして、ガジェ⌘ガジェット伝道師(@gadget_man_n)は適格販売により収入を得ています。");
+  if (shops.has("rakuten")) notes.push("楽天市場へのリンクには、アフィリエイト広告が含まれる場合があります。");
+  return notes.map((text) => `<p class="s-ad">${text}</p>`).join("");
+}
+
 function itemSheet(it) {
   const c = it.hasCoupon ? couponMap.get(codesOf(it)[0]?.code || it.id) : null;
   const sib = (videoById[it.videoGroupId]?.items || []).filter((x) => x.id !== it.id);
@@ -1875,6 +1883,7 @@ function itemSheet(it) {
       <button type="button" class="press" data-item-share="${it.id}">${ICON.share}<span>共有</span></button>
     </div>
     <div class="s-share-manual" hidden><label for="itemShareURL">このリンクをコピーして共有できます</label><input id="itemShareURL" type="url" readonly value="${esc(itemURL(it))}"></div>
+    ${affiliateDisclosureHTML(it)}
     ${sib.length ? `<p class="s-sub">同じ動画で紹介</p><div class="rel">${sib.map((s) => `<button type="button" class="press" data-item="${s.id}"><span class="rt">${s.thumbnail ? `<img src="${src(s.thumbnail)}" alt="">` : ""}</span><span>${esc(s.title)}</span></button>`).join("")}</div>` : ""}`;
 }
 

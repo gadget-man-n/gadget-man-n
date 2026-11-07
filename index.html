@@ -1475,6 +1475,7 @@ const onCountClick = (e) => {
 document.addEventListener("click", onCountClick, true);
 document.addEventListener("auxclick", onCountClick, true);
 const MOFT = {
+  affiliateProgram: "moft",
   key: "moft", maker: "MOFT", logo: SITE + "assets/moft-logo-trim.png", off: "500円", offUnit: "OFF", scope: "公式サイト全商品",
   codes: [{ code: "man2026", label: "" }], expires: "2026-12-31T23:59:59+09:00", url: "https://www.moftjapan.com/",
   terms: ["公式サイト全商品対象", "セール価格との併用可能", "2026年12月31日まで有効"], items: [],
@@ -1861,9 +1862,11 @@ function linksHTML(it) {
 
 function affiliateDisclosureHTML(it) {
   const shops = new Set((it.links || []).map((link) => shop(link).k));
+  if (it.affiliateProgram === "moft") shops.add("moft");
   const notes = [];
   if (shops.has("amazon")) notes.push("Amazonのアソシエイトとして、ガジェ⌘ガジェット伝道師(@gadget_man_n)は適格販売により収入を得ています。");
-  if (shops.has("rakuten")) notes.push("楽天市場へのリンクには、アフィリエイト広告が含まれる場合があります。");
+  if (shops.has("rakuten")) notes.push("楽天市場へのリンクには、アフィリエイト広告が含まれています。");
+  if (shops.has("moft")) notes.push("MOFTの紹介には、アフィリエイト広告が含まれています。");
   return notes.map((text) => `<p class="s-ad">${text}</p>`).join("");
 }
 
@@ -1904,7 +1907,9 @@ function couponSheet(c) {
       <h2 class="s-title">${esc(c.off)}${esc(c.offUnit)}</h2>
       <div class="keys">${c.codes.map((k) => keyHTML(k, false)).join("")}</div>
       <ul class="terms">${c.terms.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
-      <div class="buy"><a class="btn web press" href="${c.url}" target="_blank" rel="noopener sponsored">MOFT公式サイト${ICON.out}</a></div>`;
+      <p class="s-ad">このクーポン紹介にはプロモーションが含まれます。</p>
+      <div class="buy"><a class="btn web press" href="${c.url}" target="_blank" rel="noopener sponsored">MOFT公式サイト${ICON.out}</a></div>
+      ${affiliateDisclosureHTML(c)}`;
   }
   return `<div class="s-meta" style="margin-top:6px"><span class="maker">${esc(c.maker)}</span>${leftChip(c.expires)}</div>
     <h2 class="s-title">${esc(c.off)}${esc(c.offUnit)}</h2>
